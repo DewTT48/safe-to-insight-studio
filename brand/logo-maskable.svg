@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Safe-to-Insight Studio maskable icon">
+  <rect width="512" height="512" fill="#0B1F33"/>
+  <circle cx="139" cy="180" r="14" fill="#38D6C2"/>
+  <circle cx="139" cy="256" r="10" fill="#B8C8D8" fill-opacity=".7"/>
+  <circle cx="139" cy="332" r="7" fill="#B8C8D8" fill-opacity=".42"/>
+  <path d="M139 180h160c29 0 48 16 48 40s-19 40-48 40h-92c-29 0-48 16-48 40s19 40 48 40h150"
+        fill="none" stroke="#F8FCFF" stroke-width="29" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M337 314l37 26-37 26" fill="none" stroke="#38D6C2" stroke-width="29" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M356 125l7 15 15 7-15 7-7 15-7-15-15-7 15-7 7-15Z" fill="#38D6C2"/>
+</svg>
