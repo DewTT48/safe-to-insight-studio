@@ -2,6 +2,9 @@
 
 หน้า Landing Page สำหรับแนะนำ Safe-to-Insight Studio ผลิตภัณฑ์เตรียมข้อมูลให้ปลอดภัยก่อนนำไปใช้กับ AI
 
+- เว็บไซต์: `https://safedata.dewteerapap.com/`
+- GitHub Pages source: branch `gh-pages`
+
 ## โครงสร้าง
 
 - `dist/` — เว็บไซต์ static ที่พร้อม deploy
