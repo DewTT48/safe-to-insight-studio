@@ -80,3 +80,13 @@ node --test tests/demo-model.test.cjs
 - ตรวจด้วย unit tests 14 ข้อ และเบราว์เซอร์ที่ 390px / 1440px: รหัสสินค้า/อีเมล, ลบ/คืน/ย้อนกลับ, คำแนะนำ, รีเซ็ต, สลับต้นฉบับ/ผลลัพธ์ และหยุดกราฟเมื่อตัวเลขที่จำเป็นเป็นรหัส
 - สำรองก่อนอัปเดต: `backup/landing-before-instant-preview-20260930` (source), `backup/public-before-instant-preview-20260930` (public)
 - ไม่เปลี่ยน Apps Script, Pilot, โลโก้ หรือ Home Screen icons
+
+## Thai hero + meaningful package samples — 30 September 2026
+
+- Hero แบ่งเป็นวลีไทยแทนบังคับตัด 4 บรรทัด; ทดสอบ desktop 1440px และ mobile 390px รวมเป็น 2 บรรทัดโดยไม่มีแนวนอนล้น
+- แทนเส้นตกแต่งใน Safe Package ด้วยตัวอย่างตารางข้อมูล แผนวิธีปกป้อง และรายการการเปลี่ยนแปลง พร้อมคำอธิบายการใช้แต่ละไฟล์
+- `dist/entry.js` ให้ fresh visit/reload เริ่มที่ Hero แม้ URL เดิมมี #demo/#contact; ลิงก์ภายในยังทำงานตามปกติ และไม่บังคับ scroll เมื่อคืนหน้าจาก BFCache
+- Run all checks: `node --test tests/*.test.cjs` (17 tests)
+- **ยังไม่เสร็จ:** ฟอร์มรับคำขอนัดเดโม/ใบเสนอราคาแยกจากระบบเดิม ผู้ใช้อนุมัติให้สร้างแล้ว แต่การเข้าถึง Chrome เพื่อสร้างในบัญชี Google ยังไม่ได้รับอนุญาต จึงยังไม่สร้างหรือเปิดฟอร์ม ไม่มีการส่งคำขอทดสอบ และปุ่มเดิมยังเป็น mailto
+- ขั้นต่อไปของฟอร์ม: สร้าง Google Form แยก เก็บประเภทคำขอ ชื่อผู้ติดต่อ องค์กร อีเมล และรายละเอียดที่จำเป็นเท่านั้น; ไม่รับไฟล์จริง/ข้อมูลลับ ไม่ยืนยันนัดหรือราคาอัตโนมัติ ตรวจสิทธิ์คำตอบและการแจ้งเตือนก่อนเชื่อมปุ่มบนเว็บ
+- Backup source: `backup/landing-before-hero-package-20260930`; backup public: `backup/public-before-hero-package-20260930`
