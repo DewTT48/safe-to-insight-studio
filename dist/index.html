@@ -29,9 +29,9 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css" />
-    <script src="/demo-model.js" defer></script>
-    <script src="/script.js" defer></script>
+    <link rel="stylesheet" href="/styles.css?v=20260930-preview3" />
+    <script src="/demo-model.js?v=20260930-preview3" defer></script>
+    <script src="/script.js?v=20260930-preview3" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">ข้ามไปยังเนื้อหาหลัก</a>
@@ -321,17 +321,51 @@
                 ></div>
               </div>
               <div class="method-panel">
-                <div>
-                  <label for="protection-method"
-                    >2. วิธีจัดการ <strong id="selected-column"></strong
-                  ></label>
-                  <p id="column-context"></p>
+                <div class="method-controls">
+                  <p id="method-label">
+                    2. วิธีจัดการ <strong id="selected-column"></strong>
+                  </p>
+                  <div
+                    id="method-buttons"
+                    role="group"
+                    aria-labelledby="method-label"
+                    aria-describedby="method-description"
+                  ></div>
+                  <div class="method-help">
+                    <p id="column-context"></p>
+                    <p id="method-description"></p>
+                  </div>
                 </div>
-                <select
-                  id="protection-method"
-                  aria-describedby="method-description"
-                ></select>
-                <p id="method-description"></p>
+                <section
+                  class="instant-preview"
+                  aria-label="ตัวอย่างผลลัพธ์ของคอลัมน์ที่เลือก"
+                >
+                  <h4>เลือกแล้ว เห็นผลตรงนี้</h4>
+                  <div id="field-preview"></div>
+                  <p
+                    id="field-feedback"
+                    role="status"
+                    aria-live="polite"
+                    aria-atomic="true"
+                  ></p>
+                </section>
+              </div>
+              <div class="demo-actions">
+                <button
+                  type="button"
+                  id="recommend-demo"
+                  class="button button-dark small"
+                >
+                  ลองใช้วิธีที่ระบบแนะนำ
+                </button>
+                <button
+                  type="button"
+                  id="undo-demo"
+                  class="button button-light small"
+                  disabled
+                >
+                  ย้อนกลับ 1 ขั้น
+                </button>
               </div>
               <div
                 class="mobile-view-switch"
@@ -339,11 +373,16 @@
                 aria-label="มุมมองตาราง"
               >
                 <button type="button" data-view="before" aria-pressed="false">
-                  ต้นฉบับ</button
+                  ดูต้นฉบับ</button
                 ><button type="button" data-view="after" aria-pressed="true">
-                  หลังเตรียมข้อมูล
+                  ดูข้อมูลหลังปรับ
                 </button>
               </div>
+              <div
+                id="removed-columns"
+                role="group"
+                aria-label="คอลัมน์ที่ตัดออกและปุ่มคืนคอลัมน์"
+              ></div>
               <div class="comparison" data-mobile-view="after">
                 <section class="table-panel before-panel">
                   <h4><span class="table-dot amber-dot"></span> ต้นฉบับ</h4>
@@ -369,7 +408,10 @@
                   ></div>
                 </section>
               </div>
-              <p class="table-hint">เลื่อนตารางซ้าย–ขวาเพื่อดูทุกคอลัมน์ และขึ้น–ลงเพื่อดูครบทั้ง 8 รายการ</p>
+              <p class="table-hint">
+                เลื่อนตารางซ้าย–ขวาเพื่อดูทุกคอลัมน์ และขึ้น–ลงเพื่อดูครบทั้ง 8
+                รายการ
+              </p>
               <div class="insight-box">
                 <div>
                   <p class="eyebrow muted">ยังตอบคำถามได้ไหม?</p>
@@ -402,7 +444,7 @@
                   </p>
                 </div>
                 <a class="button button-dark small" href="#contact"
-                  >นัดดูโปรแกรม →</a
+                  >นัดดูโปรแกรมกับงานของคุณ →</a
                 >
               </div>
               <p class="demo-disclaimer">
@@ -420,7 +462,10 @@
           <div>
             <p class="eyebrow muted">รู้จัก SAFE-TO-INSIGHT STUDIO</p>
             <h2>ไม่ต้องไล่แก้ทีละเซลล์<br />ให้โปรแกรมช่วยเตรียมไฟล์</h2>
-            <p class="product-lead">เดโมด้านบนเป็นเพียงตัวอย่าง โปรแกรมจริงช่วยคุณตรวจไฟล์ เลือกวิธีปกป้อง และดาวน์โหลดข้อมูลที่ปรับแล้วไปใช้ต่อ</p>
+            <p class="product-lead">
+              เดโมด้านบนเป็นเพียงตัวอย่าง โปรแกรมจริงช่วยคุณตรวจไฟล์
+              เลือกวิธีปกป้อง และดาวน์โหลดข้อมูลที่ปรับแล้วไปใช้ต่อ
+            </p>
             <a class="button button-dark" href="#contact"
               >นัดดูโปรแกรมสำหรับทีมคุณ ↗</a
             >

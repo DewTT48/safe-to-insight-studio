@@ -1,6 +1,11 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { scenarios, transform, insight } = require("../dist/demo-model.js");
+const {
+  scenarios,
+  transform,
+  insight,
+  initialPlan,
+} = require("../dist/demo-model.js");
 
 test("business totals are derived from transformed values", () => {
   const plan = { ...scenarios.business.defaults };
@@ -48,7 +53,14 @@ for (const [key, scenario] of Object.entries(scenarios)) {
             assert.match(output.rows[0][column.key], /–/);
           assert.equal(
             insight(key, plan).available,
-            !scenario.required.some((c) => plan[c] !== "keep"),
+            !scenario.required.some(
+              (c) =>
+                plan[c] !== "keep" &&
+                !(
+                  ["category", "department"].includes(c) &&
+                  plan[c] === "pseudonym"
+                ),
+            ),
           );
         }
       }
@@ -74,6 +86,48 @@ test("invalid scenario and incompatible methods are rejected", () => {
       ...scenarios.business.defaults,
       client: "generalize",
     }),
+  );
+});
+test("initial plans show all original values and each field supports codes", () => {
+  for (const [key, scenario] of Object.entries(scenarios)) {
+    const plan = initialPlan(key);
+    assert.ok(Object.values(plan).every((x) => x === "keep"));
+    assert.equal(transform(key, plan).columns.length, scenario.columns.length);
+    for (const column of scenario.columns) {
+      assert.ok(column.methods.includes("pseudonym"));
+      const coded = transform(key, { ...plan, [column.key]: "pseudonym" });
+      assert.match(coded.rows[0][column.key], /^[A-Z]+-001$/);
+    }
+  }
+});
+test("product codes follow products, not customers", () => {
+  const output = transform("business", {
+    ...initialPlan("business"),
+    product: "pseudonym",
+  });
+  assert.equal(output.rows[0].product, "PRODUCT-001");
+  assert.equal(output.rows[5].product, "PRODUCT-001");
+  assert.notEqual(output.rows[0].product, output.rows[3].product);
+});
+test("coded grouping retains totals but coded measurements cannot be summed", () => {
+  const plan = { ...initialPlan("business"), category: "pseudonym" };
+  assert.deepEqual(
+    insight("business", plan).items.map((x) => [x.name, x.value]),
+    [
+      ["GROUP-001", 72080],
+      ["GROUP-002", 62160],
+      ["GROUP-003", 21940],
+    ],
+  );
+  assert.equal(
+    insight("business", { ...plan, profit: "pseudonym" }).available,
+    false,
+  );
+  const people = { ...initialPlan("people"), department: "pseudonym" };
+  assert.equal(insight("people", people).items[0].name, "DEPT-001");
+  assert.equal(
+    insight("people", { ...people, status: "pseudonym" }).available,
+    false,
   );
 });
 test("generalization has explicit, correct boundaries and units", () => {
