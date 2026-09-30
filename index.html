@@ -1,340 +1,676 @@
 <!doctype html>
 <html lang="th">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#0b1f33">
-    <meta name="description" content="Safe-to-Insight Studio ช่วยทีมงานเตรียมข้อมูลให้ปลอดภัยก่อนนำไปใช้กับ AI ด้วยการตรวจความเสี่ยง เลือกวิธีปกป้อง ตรวจตัวอย่าง และสร้าง Safe Package ที่พร้อมใช้งาน">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://safedata.dewteerapap.com/">
-    <link rel="icon" href="/brand/favicon.ico" sizes="any">
-    <link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
-    <link rel="manifest" href="/brand/site.webmanifest">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css">
-    <title>Safe-to-Insight Studio | เตรียมข้อมูลให้พร้อมใช้กับ AI อย่างปลอดภัย</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1f33" />
+    <title>Safe-to-Insight Studio | ก่อนส่งไฟล์ให้ AI เลือกสิ่งที่ควรส่ง</title>
+    <meta
+      name="description"
+      content="ข้อมูลพนักงานสำคัญ ข้อมูลธุรกิจก็เช่นกัน ทดลองเตรียมข้อมูลก่อนใช้กับ AI ด้วยเดโมข้อมูลสมมติของ Safe-to-Insight Studio"
+    />
+    <link rel="canonical" href="https://safedata.dewteerapap.com/" />
+    <meta
+      property="og:title"
+      content="AI ควรได้ข้อมูลที่จำเป็น ไม่ใช่ทุกอย่างในไฟล์"
+    />
+    <meta
+      property="og:description"
+      content="ทดลองเตรียมข้อมูลส่วนบุคคลและข้อมูลธุรกิจ ก่อนนำไปใช้กับ AI"
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/brand/favicon.ico" sizes="any" />
+    <link rel="icon" href="/brand/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+    <link rel="manifest" href="/brand/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/demo-model.js" defer></script>
+    <script src="/script.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">ข้ามไปยังเนื้อหาหลัก</a>
-
-    <header class="site-header" data-header>
+    <header class="site-header">
       <div class="container nav-shell">
-        <a class="brand" href="#top" aria-label="Safe-to-Insight Studio หน้าแรก">
-          <img src="/brand/logo-mark.svg" width="46" height="46" alt="">
-          <span class="brand-copy">
-            <strong>Safe-to-Insight</strong>
-            <small>STUDIO</small>
-          </span>
-        </a>
-
-        <button class="menu-button" type="button" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="site-nav" data-menu-button>
-          <span></span><span></span><span></span>
+        <a class="brand" href="#top" aria-label="Safe-to-Insight Studio หน้าแรก"
+          ><img src="/brand/logo-mark.svg" width="46" height="46" alt="" /><span
+            ><strong>Safe-to-Insight</strong><small>STUDIO</small></span
+          ></a
+        >
+        <button
+          class="menu-button"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="เปิดเมนู"
+        >
+          เมนู <span aria-hidden="true">☰</span>
         </button>
-
-        <nav class="site-nav" id="site-nav" aria-label="เมนูหลัก" data-menu>
-          <a href="#how-it-works">วิธีทำงาน</a>
-          <a href="#safe-package">สิ่งที่ได้รับ</a>
-          <a href="#governance">ความปลอดภัย</a>
-          <a href="#pilot">สำหรับองค์กร</a>
-          <a class="nav-login" href="/app/">เข้าสู่ระบบ Pilot <span aria-hidden="true">↗</span></a>
+        <nav id="site-nav" class="site-nav" aria-label="เมนูหลัก">
+          <a href="#product">รู้จักโปรแกรม</a><a href="#demo">ลองตัวอย่าง</a
+          ><a href="#faq">คำถามที่พบบ่อย</a
+          ><a class="button button-outline small" href="#contact"
+            >นัดดูโปรแกรม ↗</a
+          >
         </nav>
       </div>
     </header>
-
     <main id="main">
       <section class="hero" id="top">
-        <div class="hero-glow hero-glow-one" aria-hidden="true"></div>
-        <div class="hero-glow hero-glow-two" aria-hidden="true"></div>
         <div class="container hero-grid">
-          <div class="hero-copy reveal">
-            <div class="eyebrow"><span class="pulse-dot"></span> Safe Data Preparation for AI</div>
-            <h1>ใช้ข้อมูลกับ AI ได้อย่างมั่นใจ<br><span>โดยไม่ต้องส่งข้อมูลดิบไปเสี่ยง</span></h1>
-            <p class="hero-lead">Safe-to-Insight Studio ช่วยทีมงานตรวจข้อมูลส่วนบุคคลและข้อมูลลับ เลือกวิธีปกป้องทีละคอลัมน์ และสร้างชุดข้อมูลที่ปลอดภัยขึ้นก่อนนำไปวิเคราะห์ด้วย AI</p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="#pilot">ขอ Demo สำหรับองค์กร <span aria-hidden="true">→</span></a>
-              <a class="button button-ghost" href="#how-it-works"><span class="play-icon" aria-hidden="true">▶</span> ดูวิธีทำงาน</a>
-            </div>
-            <p class="microcopy">เริ่มจากไฟล์ตัวอย่างหรือข้อมูลสังเคราะห์ก่อนใช้งานจริง</p>
+          <div class="hero-copy">
+            <p class="eyebrow">
+              <span class="tiny-dot"></span> ก่อนส่งไฟล์ให้ AI
+            </p>
+            <h1>
+              <span>AI ควรได้ข้อมูล<br class="desktop-break" />ที่จำเป็น</span
+              ><span class="amber"
+                >ไม่ใช่ทุกอย่าง<br class="desktop-break" />ในไฟล์</span
+              >
+            </h1>
+            <p class="hero-lead">
+              ทั้งข้อมูลส่วนบุคคลและความลับธุรกิจ<br />เลือกข้อมูลที่จำเป็น
+              ก่อนนำไปวิเคราะห์
+            </p>
+            <a class="button button-primary" href="#demo"
+              >ลองกับข้อมูลตัวอย่าง <span aria-hidden="true">→</span></a
+            >
+            <p class="microcopy">เดโมใช้ข้อมูลสมมติ · ไม่ต้องสมัคร</p>
+            <p class="hero-product-intro">
+              <strong>Safe-to-Insight Studio</strong> ช่วยตรวจข้อมูล
+              เลือกวิธีปกป้อง และสร้างไฟล์สำหรับนำไปใช้กับ AI<br /><a
+                href="#product"
+                >ดูว่าโปรแกรมช่วยงานคุณอย่างไร ↗</a
+              >
+            </p>
           </div>
-
-          <div class="hero-product reveal" aria-label="ตัวอย่างการเปลี่ยนข้อมูลดิบเป็นข้อมูลปลอดภัย">
-            <div class="product-window">
-              <div class="window-bar">
-                <div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div>
-                <div class="window-title"><img src="/brand/logo-mark.svg" alt="" width="24" height="24"> Safe Data Workspace</div>
-                <div class="secure-chip"><span aria-hidden="true">●</span> Protected</div>
+          <div
+            class="hero-story"
+            aria-label="ตัวอย่างสมมติ เปลี่ยนชื่อลูกค้าเป็นรหัส โดยเก็บกลุ่มสินค้าและกำไร"
+          >
+            <p class="story-caption">
+              คำตอบที่ต้องการ <span>≠</span> ข้อมูลทั้งหมด
+            </p>
+            <div class="sheet sheet-before">
+              <div class="sheet-title">
+                <span class="file-symbol" aria-hidden="true">▤</span>
+                ยอดขายไตรมาสล่าสุด.xlsx
+                <span class="sample-label">ข้อมูลสมมติ</span>
               </div>
-              <div class="window-body">
-                <div class="stepper" aria-label="ขั้นตอนการทำงาน">
-                  <span class="done">1</span><i></i><span class="done">2</span><i></i><span class="active">3</span><i></i><span>4</span><i></i><span>5</span>
-                </div>
-                <div class="workspace-heading">
-                  <div>
-                    <small>STEP 3 OF 5</small>
-                    <strong>เลือกวิธีปกป้องข้อมูล</strong>
-                  </div>
-                  <div class="risk-score"><span>ความเสี่ยง</span><b>สูง</b></div>
-                </div>
-                <div class="data-table" role="presentation">
-                  <div class="data-row table-head"><span>คอลัมน์</span><span>ตัวอย่างเดิม</span><span>ผลลัพธ์ปลอดภัย</span></div>
-                  <div class="data-row"><span><i class="risk risk-high"></i> ชื่อ-นามสกุล</span><span class="raw-value">สมชาย ใจดี</span><span class="safe-value">PERSON-A12F</span></div>
-                  <div class="data-row"><span><i class="risk risk-high"></i> เบอร์โทรศัพท์</span><span class="raw-value">089-123-4567</span><span class="safe-value">089-XXX-4567</span></div>
-                  <div class="data-row"><span><i class="risk risk-medium"></i> อายุ</span><span class="raw-value">42</span><span class="safe-value">40–49 ปี</span></div>
-                  <div class="data-row"><span><i class="risk risk-high"></i> เลขบัตรประชาชน</span><span class="raw-value strike">1-2345-67890-12-3</span><span class="safe-value removed">ตัดออก</span></div>
-                </div>
-                <div class="product-summary">
-                  <div><span class="summary-icon">✓</span><p><b>4</b> คอลัมน์ได้รับการปกป้อง</p></div>
-                  <button type="button" tabindex="-1">ตรวจ Preview <span>→</span></button>
-                </div>
-              </div>
+              <table>
+                <caption class="sr-only">
+                  ตัวอย่างข้อมูลต้นฉบับ
+                </caption>
+                <thead>
+                  <tr>
+                    <th class="sensitive">ลูกค้า</th>
+                    <th>รายการสินค้า</th>
+                    <th>กำไร</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="sensitive">บริษัท เมฆา จำกัด</td>
+                    <td>โน้ตบุ๊ก 14 นิ้ว</td>
+                    <td>32,750</td>
+                  </tr>
+                  <tr>
+                    <td class="sensitive">บริษัท ธารา จำกัด</td>
+                    <td>เก้าอี้สำนักงาน</td>
+                    <td>34,200</td>
+                  </tr>
+                  <tr>
+                    <td class="sensitive">บริษัท นวา จำกัด</td>
+                    <td>จอภาพ IPS 24 นิ้ว</td>
+                    <td>16,260</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div class="floating-card floating-card-top"><span>✓</span><div><b>Human approved</b><small>ตรวจแล้วก่อนนำไปใช้</small></div></div>
-            <div class="floating-card floating-card-bottom"><span>AI</span><div><b>พร้อมวิเคราะห์</b><small>ไม่ใช้ข้อมูลดิบ</small></div></div>
+            <div class="story-connector">
+              <span aria-hidden="true">↓</span>
+              <p>
+                วิเคราะห์กำไร<br /><strong>ไม่จำเป็นต้องรู้ชื่อลูกค้า</strong>
+              </p>
+            </div>
+            <div class="sheet sheet-after">
+              <div class="sheet-title">
+                <span class="tiny-dot"></span> ตัวอย่างหลังเปลี่ยนเป็นรหัส
+              </div>
+              <table>
+                <caption class="sr-only">
+                  ตัวอย่างข้อมูลหลังเปลี่ยนเป็นรหัส
+                </caption>
+                <thead>
+                  <tr>
+                    <th>ลูกค้า</th>
+                    <th>รายการสินค้า</th>
+                    <th>กำไร</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="code">CLIENT-001</td>
+                    <td>โน้ตบุ๊ก 14 นิ้ว</td>
+                    <td>32,750</td>
+                  </tr>
+                  <tr>
+                    <td class="code">CLIENT-002</td>
+                    <td>เก้าอี้สำนักงาน</td>
+                    <td>34,200</td>
+                  </tr>
+                  <tr>
+                    <td class="code">CLIENT-003</td>
+                    <td>จอภาพ IPS 24 นิ้ว</td>
+                    <td>16,260</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <a class="story-link" href="#demo">ลองเลือกวิธีอื่นด้วยตัวเอง ↘</a>
           </div>
+        </div>
+        <div class="container hero-footnote">
+          <span>SAFE DATA FIRST. INSIGHT NEXT.</span
+          ><span>ตรวจไฟล์ให้รอบคอบ ก่อนนำไปใช้กับ AI</span>
         </div>
       </section>
 
-      <section class="trust-strip" aria-label="หลักการสำคัญ">
-        <div class="container trust-grid">
-          <div><span class="trust-icon">⌂</span><p><b>ทำงานบน Google Workspace</b><small>ออกแบบให้ควบคุมสิทธิ์ได้ในองค์กร</small></p></div>
-          <div><span class="trust-icon">◎</span><p><b>ไม่ส่ง Raw Data เข้า AI</b><small>ปกป้องข้อมูลก่อนเริ่มวิเคราะห์</small></p></div>
-          <div><span class="trust-icon">✓</span><p><b>Human-in-the-loop</b><small>ผู้ใช้เป็นผู้อนุมัติผลลัพธ์</small></p></div>
-          <div><span class="trust-icon">▤</span><p><b>มีหลักฐานการตัดสินใจ</b><small>Privacy Plan และ Manifest</small></p></div>
-        </div>
-      </section>
-
-      <section class="section problem-section">
+      <section class="section why-section" id="why">
         <div class="container">
-          <div class="section-heading centered reveal">
-            <span class="section-kicker">THE DATA SAFETY GAP</span>
-            <h2>AI ช่วยวิเคราะห์ได้เร็ว<br>แต่ข้อมูลดิบอาจพาความเสี่ยงไปด้วย</h2>
-            <p>ปัญหาไม่ใช่แค่ว่า AI เก่งแค่ไหน แต่คือข้อมูลแบบใดที่ควรส่งเข้าไปตั้งแต่แรก</p>
+          <p class="eyebrow muted">ไม่ใช่แค่เรื่องของฝ่ายไอที</p>
+          <h2>
+            ข้อมูลพนักงานสำคัญ<br class="mobile-break" />
+            <span class="soft-ink">ข้อมูลธุรกิจก็เช่นกัน</span>
+          </h2>
+          <div class="risk-grid">
+            <article class="risk-story">
+              <span class="risk-icon personal" aria-hidden="true">◎</span>
+              <div>
+                <p class="label label-amber">PDPA / ข้อมูลส่วนบุคคล</p>
+                <h3>แค่อยากดูภาพรวม ต้องส่งชื่อไปด้วยไหม?</h3>
+                <p>
+                  ไฟล์พนักงานมักมีทั้งชื่อ เงินเดือน และอีเมล
+                  ทั้งที่คุณอาจต้องการดูแค่จำนวนคนลาออกในแต่ละแผนก
+                </p>
+                <a href="#demo" data-scenario-link="people"
+                  >ลองกับข้อมูลพนักงาน ↗</a
+                >
+              </div>
+            </article>
+            <article class="risk-story">
+              <span class="risk-icon business" aria-hidden="true">▥</span>
+              <div>
+                <p class="label label-teal">CONFIDENTIAL / ข้อมูลลับธุรกิจ</p>
+                <h3>แค่อยากรู้กำไร ต้องเปิดชื่อลูกค้าด้วยไหม?</h3>
+                <p>
+                  รายงานยอดขายอาจบอกทั้งชื่อลูกค้า ส่วนลด และต้นทุน
+                  ทั้งที่คุณอาจต้องการเพียงกำไรรวมของแต่ละกลุ่มสินค้า
+                </p>
+                <a href="#demo" data-scenario-link="business"
+                  >ลองกับข้อมูลธุรกิจ ↗</a
+                >
+              </div>
+            </article>
           </div>
-          <div class="problem-grid">
-            <article class="problem-card reveal">
-              <span class="card-number">01</span>
-              <div class="line-icon line-icon-risk" aria-hidden="true">!</div>
-              <h3>ข้อมูลส่วนบุคคลปะปน</h3>
-              <p>ชื่อ เบอร์โทร อีเมล เลขประจำตัว และข้อมูลอ่อนไหวอาจกระจายอยู่หลายคอลัมน์</p>
-            </article>
-            <article class="problem-card reveal">
-              <span class="card-number">02</span>
-              <div class="line-icon" aria-hidden="true">?</div>
-              <h3>ทีมงานไม่แน่ใจว่าต้องทำอะไร</h3>
-              <p>Mask, ทำรหัสแทน, ลดความละเอียด หรือตัดออก—แต่ละข้อมูลควรใช้วิธีต่างกัน</p>
-            </article>
-            <article class="problem-card reveal">
-              <span class="card-number">03</span>
-              <div class="line-icon" aria-hidden="true">⌁</div>
-              <h3>ขาดหลักฐานตรวจสอบย้อนหลัง</h3>
-              <p>เมื่อส่งไฟล์ให้ AI แล้ว มักตอบได้ยากว่าเปลี่ยนอะไร ใครอนุมัติ และไฟล์ไหนคือเวอร์ชันปลอดภัย</p>
-            </article>
+          <p class="bridge">
+            <span aria-hidden="true"></span>เริ่มจากคำถามที่อยากตอบ
+            แล้วเลือกข้อมูลที่จำเป็น<span aria-hidden="true"></span>
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="section demo-section"
+        id="demo"
+        aria-labelledby="demo-heading"
+      >
+        <div class="container">
+          <div class="section-heading centered">
+            <p class="eyebrow muted">ลองได้เลย / INTERACTIVE DEMO</p>
+            <h2 id="demo-heading">
+              เลือกวิธีปกป้อง แล้วดูว่าอะไร<br
+                class="mobile-break"
+              />เปลี่ยนไปบ้าง
+            </h2>
+            <p>
+              คลิกชื่อคอลัมน์ เลือกวิธีปกป้อง แล้วดูว่ายังตอบคำถามเดิมได้ไหม
+            </p>
+          </div>
+          <noscript
+            ><p class="notice">
+              กรุณาเปิด JavaScript เพื่อทดลองเดโม
+              ข้อมูลตัวอย่างในส่วนบนยังอ่านได้โดยไม่เปิด JavaScript
+            </p></noscript
+          >
+          <div id="interactive-demo" hidden>
+            <div class="demo-topline">
+              <div
+                class="scenario-tabs"
+                role="tablist"
+                aria-label="เลือกข้อมูลตัวอย่าง"
+              >
+                <button
+                  id="tab-business"
+                  type="button"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="demo-panel"
+                  data-scenario="business"
+                >
+                  ข้อมูลธุรกิจ</button
+                ><button
+                  id="tab-people"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="demo-panel"
+                  tabindex="-1"
+                  data-scenario="people"
+                >
+                  ข้อมูลพนักงาน
+                </button>
+              </div>
+              <span class="sample-note">ข้อมูลทั้งหมดเป็นข้อมูลสมมติ</span>
+            </div>
+            <div
+              id="demo-panel"
+              class="workbench"
+              role="tabpanel"
+              aria-labelledby="tab-business"
+            >
+              <div class="question-row">
+                <div>
+                  <p class="eyebrow muted">คำถามที่อยากให้ AI ช่วยตอบ</p>
+                  <h3 id="demo-question"></h3>
+                </div>
+                <span class="local-badge"
+                  >ทดลองในเบราว์เซอร์ · ไม่ส่งไป AI</span
+                >
+              </div>
+              <div class="demo-file">
+                <strong id="demo-filename"></strong>
+                <p id="demo-file-note"></p>
+              </div>
+              <details class="exposure-story" id="exposure-story">
+                <summary>ลองดูว่าไฟล์นี้บอกอะไรได้บ้าง</summary>
+                <div>
+                  <p>
+                    นอกจากคำตอบที่อยากได้
+                    ไฟล์ต้นฉบับยังเปิดเผยเรื่องเหล่านี้ด้วย
+                  </p>
+                  <ol id="exposure-list"></ol>
+                  <p class="exposure-note">
+                    ชื่อบุคคล บริษัท และรายการขายทั้งหมดแต่งขึ้นเพื่อสาธิต
+                    หากตรงกับชื่อจริงเป็นความบังเอิญ
+                  </p>
+                  <p id="exposure-status" role="status"></p>
+                </div>
+              </details>
+              <div class="column-picker">
+                <p id="column-label">1. เลือกคอลัมน์ที่อยากจัดการ</p>
+                <div
+                  id="column-buttons"
+                  role="group"
+                  aria-labelledby="column-label"
+                ></div>
+              </div>
+              <div class="method-panel">
+                <div>
+                  <label for="protection-method"
+                    >2. วิธีจัดการ <strong id="selected-column"></strong
+                  ></label>
+                  <p id="column-context"></p>
+                </div>
+                <select
+                  id="protection-method"
+                  aria-describedby="method-description"
+                ></select>
+                <p id="method-description"></p>
+              </div>
+              <div
+                class="mobile-view-switch"
+                role="group"
+                aria-label="มุมมองตาราง"
+              >
+                <button type="button" data-view="before" aria-pressed="false">
+                  ต้นฉบับ</button
+                ><button type="button" data-view="after" aria-pressed="true">
+                  หลังเตรียมข้อมูล
+                </button>
+              </div>
+              <div class="comparison" data-mobile-view="after">
+                <section class="table-panel before-panel">
+                  <h4><span class="table-dot amber-dot"></span> ต้นฉบับ</h4>
+                  <div
+                    class="table-scroll"
+                    tabindex="0"
+                    role="region"
+                    aria-label="ตารางต้นฉบับ เลื่อนแนวนอนได้"
+                    id="before-table"
+                  ></div>
+                </section>
+                <section class="table-panel after-panel">
+                  <h4>
+                    <span class="table-dot"></span> หลังเตรียมข้อมูล
+                    <span class="preview-label">PREVIEW</span>
+                  </h4>
+                  <div
+                    class="table-scroll"
+                    tabindex="0"
+                    role="region"
+                    aria-label="ตารางหลังเตรียมข้อมูล เลื่อนแนวนอนได้"
+                    id="after-table"
+                  ></div>
+                </section>
+              </div>
+              <p class="table-hint">เลื่อนตารางซ้าย–ขวาเพื่อดูทุกคอลัมน์ และขึ้น–ลงเพื่อดูครบทั้ง 8 รายการ</p>
+              <div class="insight-box">
+                <div>
+                  <p class="eyebrow muted">ยังตอบคำถามได้ไหม?</p>
+                  <h4 id="insight-title"></h4>
+                  <p id="insight-description"></p>
+                </div>
+                <div id="insight-chart" class="insight-chart"></div>
+              </div>
+              <div class="demo-bottom">
+                <p
+                  id="change-summary"
+                  role="status"
+                  aria-live="polite"
+                  aria-atomic="true"
+                ></p>
+                <button
+                  type="button"
+                  id="reset-demo"
+                  class="button button-light small"
+                >
+                  ↺ เริ่มใหม่
+                </button>
+              </div>
+              <div class="demo-conversion">
+                <div>
+                  <strong>อยากทำแบบนี้กับไฟล์ของทีมคุณ?</strong>
+                  <p>
+                    นี่เป็นเพียงตัวอย่าง ลองดูการทำงานของ Safe-to-Insight Studio
+                    ตั้งแต่อัปโหลดจนได้ไฟล์กลับไปใช้
+                  </p>
+                </div>
+                <a class="button button-dark small" href="#contact"
+                  >นัดดูโปรแกรม →</a
+                >
+              </div>
+              <p class="demo-disclaimer">
+                นี่คือการสาธิต ไม่ใช่ผลประเมินความเสี่ยงจริง
+                การเปลี่ยนเป็นรหัสไม่ได้ทำให้ข้อมูลเป็นนิรนามโดยอัตโนมัติ
+                และข้อมูลที่เหลือยังต้องตรวจทาน
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
+      <section class="section product-section" id="product">
+        <div class="container product-grid">
+          <div>
+            <p class="eyebrow muted">รู้จัก SAFE-TO-INSIGHT STUDIO</p>
+            <h2>ไม่ต้องไล่แก้ทีละเซลล์<br />ให้โปรแกรมช่วยเตรียมไฟล์</h2>
+            <p class="product-lead">เดโมด้านบนเป็นเพียงตัวอย่าง โปรแกรมจริงช่วยคุณตรวจไฟล์ เลือกวิธีปกป้อง และดาวน์โหลดข้อมูลที่ปรับแล้วไปใช้ต่อ</p>
+            <a class="button button-dark" href="#contact"
+              >นัดดูโปรแกรมสำหรับทีมคุณ ↗</a
+            >
+          </div>
+          <div class="product-benefits">
+            <article>
+              <span>01</span>
+              <div>
+                <h3>เห็นว่ามีอะไรควรตรวจ</h3>
+                <p>
+                  โปรแกรมช่วยชี้คอลัมน์ที่อาจมีข้อมูลส่วนบุคคลหรือข้อมูลลับ
+                  ให้คุณตรวจและเลือกวิธีจัดการ
+                </p>
+              </div>
+            </article>
+            <article>
+              <span>02</span>
+              <div>
+                <h3>ดูผลก่อนสร้างไฟล์</h3>
+                <p>
+                  เลือกวิธีปกป้องทีละคอลัมน์
+                  แล้วเปรียบเทียบต้นฉบับกับผลลัพธ์ก่อนยืนยัน
+                </p>
+              </div>
+            </article>
+            <article>
+              <span>03</span>
+              <div>
+                <h3>ส่งต่องานพร้อมรายละเอียด</h3>
+                <p>
+                  ดาวน์โหลดข้อมูลหลังปรับ พร้อมแผนและบันทึกการแปลงข้อมูล
+                  เพื่อให้ทีมตรวจต่อได้
+                </p>
+              </div>
+            </article>
+            <p class="product-note">
+              ต้องการดูว่าเหมาะกับงานของคุณไหม?
+              นัดสาธิตด้วยไฟล์สมมติที่ใกล้เคียงกับงานจริงของทีมได้
+            </p>
+          </div>
+        </div>
+      </section>
       <section class="section workflow-section" id="how-it-works">
         <div class="container">
-          <div class="section-heading reveal">
-            <span class="section-kicker">GUIDED WORKFLOW</span>
-            <h2>จากไฟล์ต้นฉบับสู่ Safe Package<br>ใน 5 ขั้นตอนที่ทีมงานทำตามได้</h2>
-            <p>ระบบอธิบายสิ่งที่พบ แนะนำทางเลือก และให้ผู้ใช้ยืนยันก่อนสร้างไฟล์จริง</p>
+          <div class="section-heading centered">
+            <p class="eyebrow muted">ทำงานจริงกับ Safe-to-Insight Studio</p>
+            <h2>ตรวจ เลือก และดาวน์โหลด<br />ได้ในโปรแกรมเดียว</h2>
           </div>
-          <ol class="workflow-list">
-            <li class="workflow-item reveal">
-              <div class="workflow-number">01</div>
-              <div class="workflow-copy"><h3>อัปโหลดไฟล์</h3><p>รองรับไฟล์ตาราง CSV, XLS และ XLSX พร้อมเลือกชีทและแถวหัวตารางที่ต้องการใช้ในรอบนี้</p></div>
-              <div class="workflow-visual mini-upload" aria-hidden="true"><div>↑</div><span>workforce.xlsx</span><small>เลือกชีท: Employees 2026</small></div>
+          <ol class="steps">
+            <li>
+              <span class="step-number">01</span>
+              <h3>ตรวจข้อมูล</h3>
+              <p>
+                เริ่มจากไฟล์ตารางและคำถามที่อยากตอบ
+                ทบทวนคอลัมน์ที่ระบบแนะนำให้ตรวจ
+              </p>
+              <div class="step-art art-inspect" aria-hidden="true">
+                <i></i><i></i><i></i><span>⌕</span>
+              </div>
             </li>
-            <li class="workflow-item reveal">
-              <div class="workflow-number">02</div>
-              <div class="workflow-copy"><h3>ระบบอธิบายข้อมูล</h3><p>ตรวจจับความเสี่ยงแบบ rule-based และบอกด้วยภาษาง่ายๆ ว่าคอลัมน์ใดอาจเป็นข้อมูลส่วนบุคคลหรือข้อมูลลับ</p></div>
-              <div class="workflow-visual mini-detect" aria-hidden="true"><span><i class="risk risk-high"></i> ชื่อ-นามสกุล <b>สูง</b></span><span><i class="risk risk-medium"></i> อายุ <b>กลาง</b></span><span><i class="risk risk-low"></i> แผนก <b>ต่ำ</b></span></div>
+            <li>
+              <span class="step-number">02</span>
+              <h3>เลือกวิธีปกป้อง</h3>
+              <p>
+                เก็บเดิม เปลี่ยนเป็นรหัส ปิดบัง ลดความละเอียด
+                หรือตัดออกตามความเหมาะสม
+              </p>
+              <div class="step-art art-select" aria-hidden="true">
+                <span>✓</span><i></i><span>✓</span><i></i>
+              </div>
             </li>
-            <li class="workflow-item reveal">
-              <div class="workflow-number">03</div>
-              <div class="workflow-copy"><h3>เลือกวิธีปกป้อง</h3><p>เก็บเดิม เปลี่ยนเป็นรหัสแทน ปิดบัง ลดความละเอียด หรือตัดคอลัมน์ โดยดูตัวอย่างผลลัพธ์ก่อนตัดสินใจ</p></div>
-              <div class="workflow-visual mini-choice" aria-hidden="true"><span class="selected">ทำรหัสแทน</span><span>ปิดบัง</span><span>ลดความละเอียด</span></div>
-            </li>
-            <li class="workflow-item reveal">
-              <div class="workflow-number">04</div>
-              <div class="workflow-copy"><h3>ตรวจ Safe Preview</h3><p>เปรียบเทียบก่อนและหลัง ตรวจคุณภาพข้อมูล และยืนยันว่าข้อมูลยังตอบโจทย์การวิเคราะห์</p></div>
-              <div class="workflow-visual mini-preview" aria-hidden="true"><div><small>ก่อน</small><del>สมชาย ใจดี</del></div><span>→</span><div><small>หลัง</small><b>PERSON-A12F</b></div></div>
-            </li>
-            <li class="workflow-item reveal">
-              <div class="workflow-number">05</div>
-              <div class="workflow-copy"><h3>สร้างและอนุมัติ Safe Package</h3><p>ดาวน์โหลดชุดข้อมูลพร้อมเอกสารประกอบการตัดสินใจ หลังผู้ใช้ตรวจและอนุมัติแล้วเท่านั้น</p></div>
-              <div class="workflow-visual mini-package" aria-hidden="true"><span>▤</span><div><b>Safe Package</b><small>Dataset + Manifest + Plan</small></div><i>✓</i></div>
+            <li>
+              <span class="step-number">03</span>
+              <h3>ตรวจทานก่อนนำไปใช้</h3>
+              <p>
+                ดูผลลัพธ์และสิ่งที่ยังเปิดเผย
+                ก่อนอนุมัติและดาวน์โหลดชุดข้อมูลไปใช้
+              </p>
+              <div class="step-art art-review" aria-hidden="true">
+                <i></i><i></i><span>✓</span>
+              </div>
             </li>
           </ol>
+          <p class="workflow-note">
+            ภาพรวม 3 ช่วง ตั้งแต่อัปโหลดและอธิบายข้อมูล ไปจนถึงตรวจและสร้าง Safe
+            Package
+          </p>
         </div>
       </section>
 
-      <section class="section demo-section" id="safe-package">
-        <div class="container demo-grid">
-          <div class="demo-copy reveal">
-            <span class="section-kicker">SEE THE CHANGE</span>
-            <h2>เห็นผลลัพธ์ก่อนสร้างไฟล์จริง</h2>
-            <p>เลือกตัวอย่างด้านล่างเพื่อดูว่าข้อมูลแต่ละประเภทสามารถปกป้องต่างกันได้อย่างไร โดยยังรักษาประโยชน์ต่อการวิเคราะห์เท่าที่จำเป็น</p>
-            <div class="demo-tabs" role="tablist" aria-label="ตัวอย่างวิธีปกป้องข้อมูล">
-              <button type="button" role="tab" aria-selected="true" data-demo="pseudonym">ชื่อบุคคล</button>
-              <button type="button" role="tab" aria-selected="false" data-demo="mask">เบอร์โทร</button>
-              <button type="button" role="tab" aria-selected="false" data-demo="generalize">อายุ</button>
-              <button type="button" role="tab" aria-selected="false" data-demo="remove">เลขบัตร</button>
-            </div>
-            <div class="demo-explanation" aria-live="polite">
-              <span class="method-chip" data-method>ทำรหัสแทน</span>
-              <h3 data-demo-title>ยังติดตามคนเดิมในชุดข้อมูลได้ โดยไม่เปิดเผยชื่อ</h3>
-              <p data-demo-description>ระบบสร้างรหัสคงที่ตามแถวหรือรหัสอ้างอิงที่กำหนด เพื่อหลีกเลี่ยงการรวมคนชื่อซ้ำเป็นบุคคลเดียวกันโดยอัตโนมัติ</p>
-            </div>
-          </div>
-          <div class="comparison-card reveal">
-            <div class="comparison-header">
-              <div><span class="status-dot red"></span> BEFORE</div>
-              <span class="transform-arrow">→</span>
-              <div><span class="status-dot green"></span> SAFE PREVIEW</div>
-            </div>
-            <div class="comparison-content">
-              <div class="value-card unsafe"><small data-before-label>ชื่อ-นามสกุล</small><strong data-before>สมชาย ใจดี</strong><span>ข้อมูลระบุตัวบุคคล</span></div>
-              <div class="shield-transform" aria-hidden="true"><span>✓</span><small data-transform-label>PSEUDONYMIZE</small></div>
-              <div class="value-card safe"><small data-after-label>รหัสบุคคล</small><strong data-after>PERSON-A12F</strong><span>พร้อมใช้วิเคราะห์</span></div>
-            </div>
-            <div class="comparison-footer"><span>✓</span> ผู้ใช้ตรวจผลลัพธ์ก่อนยืนยันทุกครั้ง</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section package-section">
+      <section class="section package-section" id="safe-package">
         <div class="container package-grid">
-          <div class="package-visual reveal" aria-label="องค์ประกอบภายใน Safe Package">
-            <div class="folder-back"></div>
-            <div class="file-card file-one"><span class="file-icon teal">CSV</span><div><b>Safe Dataset</b><small>ข้อมูลหลังปกป้องแล้ว</small></div><i>✓</i></div>
-            <div class="file-card file-two"><span class="file-icon navy">PLAN</span><div><b>Privacy Plan</b><small>วิธีที่เลือกในแต่ละคอลัมน์</small></div><i>✓</i></div>
-            <div class="file-card file-three"><span class="file-icon blue">JSON</span><div><b>Privacy Manifest</b><small>รายละเอียดสำหรับตรวจสอบ</small></div><i>✓</i></div>
-            <div class="file-card file-four"><span class="file-icon gold">PDF</span><div><b>Package Receipt</b><small>สรุปการสร้างชุดข้อมูล</small></div><i>✓</i></div>
+          <div>
+            <p class="eyebrow">SAFE PACKAGE</p>
+            <h2>ได้ทั้งไฟล์ที่เตรียมแล้ว<br />และบันทึกว่าแก้อะไรไปบ้าง</h2>
+            <p>
+              ข้อมูลที่เตรียมแล้ว พร้อมรายละเอียดว่า<br />คุณเลือกปกป้องแต่ละคอลัมน์อย่างไร
+            </p>
+            <p class="package-warning">
+              <span aria-hidden="true">!</span> ต้องตรวจทานก่อนนำไปใช้จริง
+            </p>
           </div>
-          <div class="package-copy reveal">
-            <span class="section-kicker">MORE THAN A CLEAN FILE</span>
-            <h2>ไม่ได้แค่ไฟล์ใหม่<br>แต่ได้ร่องรอยการตัดสินใจไปพร้อมกัน</h2>
-            <p>Safe Package ช่วยให้ทีมข้อมูล ผู้อนุมัติ และผู้ตรวจสอบเห็นตรงกันว่าไฟล์ถูกเตรียมอย่างไร ก่อนนำไปใช้กับเครื่องมือ AI ภายนอก</p>
-            <ul class="check-list">
-              <li><span>✓</span><div><b>พร้อมส่งต่ออย่างมีบริบท</b><small>ผู้รับรู้ข้อจำกัดและวัตถุประสงค์ของข้อมูล</small></div></li>
-              <li><span>✓</span><div><b>ตรวจย้อนกลับได้ง่ายขึ้น</b><small>มีรายการวิธีปกป้องและเวลาที่สร้าง package</small></div></li>
-              <li><span>✓</span><div><b>ใช้ซ้ำเป็นมาตรฐานทีมได้</b><small>นำแผนการปกป้องไปทบทวนในรอบถัดไป</small></div></li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="section usecase-section">
-        <div class="container">
-          <div class="section-heading centered reveal">
-            <span class="section-kicker">BUILT FOR RESPONSIBLE TEAMS</span>
-            <h2>เหมาะกับทีมที่อยากใช้ AI<br>โดยยังดูแลข้อมูลของคนอย่างรับผิดชอบ</h2>
-          </div>
-          <div class="usecase-grid">
-            <article class="usecase-card reveal"><span class="usecase-icon">HR</span><h3>People & HR Analytics</h3><p>เตรียมข้อมูลพนักงาน แบบสำรวจ และผลประเมินก่อนวิเคราะห์แนวโน้ม</p><a href="#pilot">ดูแนวทางทดลอง <span>→</span></a></article>
-            <article class="usecase-card reveal"><span class="usecase-icon">ED</span><h3>Education & Research</h3><p>ลดข้อมูลที่ระบุตัวผู้เรียนหรือผู้ตอบแบบสอบถามก่อนทำวิจัยและสรุปผล</p><a href="#pilot">ดูแนวทางทดลอง <span>→</span></a></article>
-            <article class="usecase-card reveal"><span class="usecase-icon">CX</span><h3>Customer Insight</h3><p>ปกป้องข้อมูลลูกค้าก่อนจัดกลุ่ม วิเคราะห์เสียงสะท้อน หรือหาโอกาสปรับบริการ</p><a href="#pilot">ดูแนวทางทดลอง <span>→</span></a></article>
-            <article class="usecase-card reveal"><span class="usecase-icon">CS</span><h3>Consulting & Shared Services</h3><p>สร้างขั้นตอนรับ–ส่งข้อมูลที่ชัดเจนเมื่อต้องทำงานข้ามทีมและข้ามองค์กร</p><a href="#pilot">ดูแนวทางทดลอง <span>→</span></a></article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section governance-section" id="governance">
-        <div class="container governance-grid">
-          <div class="governance-copy reveal">
-            <span class="section-kicker light">PRIVACY BY WORKFLOW</span>
-            <h2>ความปลอดภัยไม่ควรเป็นขั้นตอนที่นึกได้ทีหลัง</h2>
-            <p>Safe-to-Insight วางการตรวจความเสี่ยง การตัดสินใจของมนุษย์ และหลักฐานประกอบไว้ใน workflow เดียว ตั้งแต่ก่อนเริ่มใช้ AI</p>
-            <div class="governance-note"><span>i</span><p>ระบบช่วยเตรียมข้อมูลและสนับสนุนการตัดสินใจ ไม่ใช่คำรับรองว่าข้อมูลนิรนามสมบูรณ์หรือรับรองการปฏิบัติตามกฎหมายแทนองค์กร</p></div>
-          </div>
-          <div class="governance-cards">
-            <article class="governance-card reveal"><span>01</span><div><h3>Rule-based detection</h3><p>อธิบายสิ่งที่ตรวจพบและเหตุผลได้ ไม่ซ่อนการตัดสินใจไว้ในกล่องดำ</p></div></article>
-            <article class="governance-card reveal"><span>02</span><div><h3>Human approval</h3><p>ไม่มี Safe Package ที่ถือว่าอนุมัติจนกว่าผู้ใช้จะตรวจและยืนยัน</p></div></article>
-            <article class="governance-card reveal"><span>03</span><div><h3>Workspace control</h3><p>แนวทาง Commercial มุ่งให้แต่ละองค์กรติดตั้งใน Google Workspace ที่ตนเองควบคุม</p></div></article>
-            <article class="governance-card reveal"><span>04</span><div><h3>Ownership & audit trail</h3><p>ออกแบบให้ผูกงานกับผู้สร้าง จำกัดการเข้าถึง และตรวจย้อนหลังได้</p></div></article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section pilot-section" id="pilot">
-        <div class="container">
-          <div class="section-heading centered reveal">
-            <span class="section-kicker">START WITH A CONTROLLED PILOT</span>
-            <h2>เริ่มเล็ก พิสูจน์กับงานจริง<br>แล้วค่อยวางมาตรฐานระดับองค์กร</h2>
-            <p>เหมาะสำหรับทีมที่มี use case ชัดเจนและต้องการทดลอง workflow กับข้อมูลสังเคราะห์หรือข้อมูลที่ผ่านการอนุมัติแล้ว</p>
-          </div>
-          <div class="pilot-grid">
-            <article class="pilot-card featured reveal">
-              <div class="pilot-tag">แนะนำสำหรับการเริ่มต้น</div>
-              <span class="pilot-index">01</span>
-              <h3>Design Partner Pilot</h3>
-              <p>ร่วมออกแบบการใช้งานกับทีมเล็ก 1–2 use cases เพื่อเก็บ feedback ก่อนขยายผล</p>
-              <ul><li>Onboarding และแนะนำรูปแบบไฟล์</li><li>ทดสอบ workflow แบบ end-to-end</li><li>ทบทวนวิธีปกป้องข้อมูลร่วมกัน</li><li>สรุปข้อเสนอแนะสำหรับ rollout</li></ul>
-              <a class="button button-primary full" href="mailto:dewteerapap@seederschool.com?subject=ขอ%20Demo%20Safe-to-Insight%20Studio">ขอคุยเรื่อง Pilot <span>→</span></a>
+          <div class="documents">
+            <article class="document">
+              <span class="document-type">DATA</span>
+              <div class="document-lines" aria-hidden="true"></div>
+              <h3>Safe Dataset</h3>
+              <p>ข้อมูลหลังปรับ</p>
             </article>
-            <article class="pilot-card reveal">
-              <span class="pilot-index">02</span>
-              <h3>Private Workspace</h3>
-              <p>แนวทางสำหรับองค์กรที่พร้อมวางระบบใน Google Workspace ภายใต้การควบคุมของตนเอง</p>
-              <ul><li>แยก environment และสิทธิ์ผู้ใช้</li><li>กำหนด retention และ audit policy</li><li>ปรับ rules และ template ตามบริบท</li><li>วางแผน support และ maintenance</li></ul>
-              <a class="button button-outline full" href="mailto:dewteerapap@seederschool.com?subject=สอบถาม%20Private%20Workspace%20Safe-to-Insight">สอบถามสำหรับองค์กร <span>→</span></a>
+            <article class="document">
+              <span class="document-type">PLAN</span>
+              <div class="document-lines" aria-hidden="true"></div>
+              <h3>Privacy Plan</h3>
+              <p>วิธีปกป้องแต่ละคอลัมน์</p>
+            </article>
+            <article class="document">
+              <span class="document-type">LOG</span>
+              <div class="document-lines" aria-hidden="true"></div>
+              <h3>Privacy Manifest</h3>
+              <p>บันทึกการแปลงข้อมูล</p>
             </article>
           </div>
-          <div class="pilot-guardrail reveal"><span>ก่อนเริ่ม Pilot</span><p>ควรเริ่มด้วยข้อมูล Demo / Synthetic กำหนดผู้รับผิดชอบข้อมูล และยืนยันขอบเขตการเข้าถึงให้ชัดเจน</p></div>
         </div>
       </section>
 
-      <section class="section faq-section">
-        <div class="container faq-grid">
-          <div class="faq-heading reveal">
-            <span class="section-kicker">FREQUENTLY ASKED</span>
-            <h2>คำถามที่ควรถาม<br>ก่อนส่งข้อมูลให้ AI</h2>
-            <p>หากมีคำถามอื่นเกี่ยวกับ use case ขององค์กร สามารถนัดคุยเพื่อประเมินขอบเขต Pilot ได้</p>
+      <section class="section faq-section" id="faq">
+        <div class="container narrow">
+          <div class="section-heading centered">
+            <p class="eyebrow muted">คำถามที่มักเจอก่อนเริ่มใช้</p>
+            <h2>ก่อนใช้งาน ต้องรู้อะไรบ้าง?</h2>
           </div>
-          <div class="faq-list reveal">
-            <details><summary>ระบบส่งข้อมูลดิบไปให้ AI หรือไม่?<span>+</span></summary><p>Core workflow เป็นการตรวจและแปลงข้อมูลแบบ rule-based ก่อน ผู้ใช้จึงดาวน์โหลดเฉพาะ Safe Package ที่ตรวจแล้วไปใช้กับ AI ตามวัตถุประสงค์ของตนเอง</p></details>
-            <details><summary>ไฟล์แบบใดเหมาะกับการใช้งาน?<span>+</span></summary><p>ไฟล์ตาราง CSV, XLS หรือ XLSX ที่จัดโครงสร้างเป็นแถวและคอลัมน์ชัดเจน ระบบรองรับหลายชีทและให้เลือกแถวหัวตารางก่อนประมวลผล ควรหลีกเลี่ยงไฟล์ที่รวมรายงานหลายรูปแบบไว้ในชีทเดียว</p></details>
-            <details><summary>ระบบรับรองว่าเป็นไปตาม PDPA หรือไม่?<span>+</span></summary><p>ไม่ ระบบช่วยค้นหาความเสี่ยงและสร้าง workflow ที่ตรวจสอบได้ แต่ผู้ควบคุมข้อมูลและผู้เชี่ยวชาญขององค์กรยังต้องพิจารณาฐานกฎหมาย วัตถุประสงค์ ความจำเป็น และความเสี่ยงของ use case จริง</p></details>
-            <details><summary>Safe Dataset นำไปใช้กับ AI ได้ทันทีหรือไม่?<span>+</span></summary><p>ควรใช้หลังจากผู้รับผิดชอบตรวจ Preview และอนุมัติ Safe Package แล้ว รวมทั้งตรวจเงื่อนไขของเครื่องมือ AI ปลายทางก่อนอัปโหลดทุกครั้ง</p></details>
-            <details><summary>ตอนนี้เหมาะกับการใช้งาน Production แล้วหรือยัง?<span>+</span></summary><p>เวอร์ชันปัจจุบันเหมาะกับ UAT และ Pilot แบบควบคุมก่อน การเปิดใช้กับข้อมูลจริงหลายผู้ใช้ควรผ่านการ harden เรื่องสิทธิ์ การแยกข้อมูล audit log, quota, retention และ incident response</p></details>
+          <div class="faq-list">
+            <details>
+              <summary>ต้องเตรียมไฟล์อย่างไร?</summary>
+              <div>
+                <p>
+                  เริ่มจากไฟล์ตาราง เช่น CSV หรือ Excel ที่มีหัวคอลัมน์ชัดเจน
+                  หนึ่งแถวต่อหนึ่งรายการ หลีกเลี่ยงเซลล์ผสาน ตารางซ้อน
+                  และหมายเหตุแทรกระหว่างแถว ในช่วงทดลองควรใช้ข้อมูลสมมติก่อน
+                </p>
+                <p>
+                  หากไฟล์มีหลายชีทหรือหัวตารางไม่ได้อยู่แถวแรก
+                  ให้ตรวจว่าระบบเวอร์ชันที่คุณใช้เลือกชีทและแถวหัวตารางได้ถูกต้องก่อนทำต่อ
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>เปลี่ยนเป็นรหัสแล้ว ยังต้องตรวจอะไร?</summary>
+              <div>
+                <p>
+                  ตรวจคอลัมน์อื่นร่วมด้วย เช่น ตำแหน่งเฉพาะ วันเกิด
+                  หรือรายละเอียดในข้อความ ที่อาจทำให้เชื่อมโยงกลับไปยังบุคคลได้
+                  รหัสแทนชื่อไม่ใช่การรับรองว่าข้อมูลเป็นนิรนาม
+                  และต้องดูแลข้อมูลที่ใช้เชื่อมกลับแยกต่างหาก
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>ข้อมูลลับธุรกิจควรลบทั้งหมดไหม?</summary>
+              <div>
+                <p>
+                  เริ่มจากวัตถุประสงค์ เช่น การวิเคราะห์กำไรยังต้องใช้ตัวเลขกำไร
+                  แต่ไม่จำเป็นต้องเห็นชื่อลูกค้าทุกราย
+                  หากรายละเอียดรายรายการไม่จำเป็น
+                  อาจเตรียมเป็นยอดรวมตามกลุ่มก่อนนำไปใช้
+                  โดยตรวจนโยบายและสิทธิ์การเปิดเผยข้อมูลขององค์กรด้วย
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>ข้อมูลถูกจัดเก็บและส่งไปที่ไหน?</summary>
+              <div>
+                <p>
+                  เดโมบนหน้านี้ใช้ข้อมูลสมมติที่มากับเว็บ ประมวลผลในเบราว์เซอร์
+                  ไม่มีช่องอัปโหลดและไม่ส่งข้อมูลเดโมไป AI เมื่อโหลดหน้าเว็บ
+                  เบราว์เซอร์จะเชื่อมต่อโฮสต์เว็บไซต์และบริการ Google Fonts
+                  เพื่อแสดงผล
+                </p>
+                <p>
+                  แอป Pilot เป็นอีกระบบหนึ่งบน Google Workspace
+                  ก่อนใช้ข้อมูลจริง ต้องยืนยันสถานที่จัดเก็บ ผู้มีสิทธิ์เข้าถึง
+                  ระยะเวลาเก็บ และวิธีลบข้อมูลกับผู้ดูแล
+                  การทำงานของเดโมไม่ใช่หลักฐานยืนยันมาตรการของแอป Pilot
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>ใช้แล้วถือว่าปฏิบัติตาม PDPA ครบถ้วนหรือไม่?</summary>
+              <div>
+                <p>
+                  ไม่ใช่การรับรองการปฏิบัติตามกฎหมาย
+                  ระบบช่วยเตรียมข้อมูลและประกอบการตัดสินใจ
+                  องค์กรยังต้องทบทวนวัตถุประสงค์ สิทธิ์การใช้ข้อมูล
+                  มาตรการที่เกี่ยวข้อง และบริบทการนำไปใช้กับผู้รับผิดชอบ
+                </p>
+              </div>
+            </details>
           </div>
+          <p class="faq-note">
+            Safe-to-Insight ช่วยเตรียมข้อมูล
+            ไม่ใช่คำรับรองความปลอดภัยหรือการปฏิบัติตาม PDPA แบบอัตโนมัติ
+          </p>
         </div>
       </section>
 
-      <section class="final-cta">
-        <div class="final-orbit orbit-one" aria-hidden="true"></div>
-        <div class="final-orbit orbit-two" aria-hidden="true"></div>
-        <div class="container final-cta-inner reveal">
-          <img src="/brand/logo-mark.svg" width="72" height="72" alt="">
-          <span class="section-kicker light">SAFE DATA. BETTER AI.</span>
-          <h2>เริ่มใช้ AI จากข้อมูลที่<br>คุณกล้าตรวจสอบและอธิบายได้</h2>
-          <p>พูดคุยเรื่อง use case ของคุณ และออกแบบ Pilot ที่เล็กพอจะควบคุม แต่จริงพอจะเรียนรู้</p>
-          <div class="hero-actions centered-actions">
-            <a class="button button-light" href="mailto:dewteerapap@seederschool.com?subject=ขอ%20Demo%20Safe-to-Insight%20Studio">ขอ Demo สำหรับองค์กร <span>→</span></a>
-            <a class="button button-dark-ghost" href="/app/">เข้าสู่ระบบ Pilot <span>↗</span></a>
+      <section class="contact-section" id="contact">
+        <div class="container centered">
+          <p class="eyebrow">SAFE-TO-INSIGHT STUDIO สำหรับทีมของคุณ</p>
+          <h2>อยากใช้ AI กับงานจริง<br />เริ่มจากเตรียมข้อมูลให้พร้อม</h2>
+          <p class="contact-intro">
+            เล่าให้ฟังว่าทีมคุณใช้ไฟล์แบบไหน เราจะสาธิตขั้นตอนที่เกี่ยวข้อง<br />พร้อมคุยรายละเอียดการใช้งานและราคาให้เหมาะกับงานของคุณ
+          </p>
+          <div class="contact-actions">
+            <a
+              class="button button-dark"
+              href="mailto:dewteerapap@seederschool.com?subject=%E0%B8%99%E0%B8%B1%E0%B8%94%E0%B8%94%E0%B8%B9%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%81%E0%B8%81%E0%B8%A3%E0%B8%A1%20%E2%80%94%20Safe-to-Insight%20Studio&body=%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B5%E0%B8%84%E0%B8%A3%E0%B8%B1%E0%B8%9A%2F%E0%B8%84%E0%B9%88%E0%B8%B0%0A%E0%B8%AA%E0%B8%99%E0%B9%83%E0%B8%88%20%E0%B8%99%E0%B8%B1%E0%B8%94%E0%B8%94%E0%B8%B9%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%81%E0%B8%81%E0%B8%A3%E0%B8%A1%20%E0%B8%AA%E0%B8%B3%E0%B8%AB%E0%B8%A3%E0%B8%B1%E0%B8%9A%20Safe-to-Insight%20Studio%0A%0A%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%AD%E0%B8%87%E0%B8%84%E0%B9%8C%E0%B8%81%E0%B8%A3%3A%0A%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B8%93%E0%B8%B0%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%95%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%8A%E0%B9%89%3A%0A%E0%B8%88%E0%B8%B3%E0%B8%99%E0%B8%A7%E0%B8%99%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B9%82%E0%B8%94%E0%B8%A2%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%A1%E0%B8%B2%E0%B8%93%3A%0A%E0%B8%8A%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%97%E0%B8%B2%E0%B8%87%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B8%B1%E0%B8%9A%3A%0A%0A%E0%B8%A2%E0%B8%B1%E0%B8%87%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B9%81%E0%B8%99%E0%B8%9A%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%87%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A5%E0%B8%B1%E0%B8%9A"
+              >นัดดูโปรแกรม →</a
+            ><a
+              class="contact-link"
+              href="mailto:dewteerapap@seederschool.com?subject=%E0%B8%82%E0%B8%AD%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%A5%E0%B8%B0%E0%B9%80%E0%B8%AD%E0%B8%B5%E0%B8%A2%E0%B8%94%E0%B8%A3%E0%B8%B2%E0%B8%84%E0%B8%B2%20%E2%80%94%20Safe-to-Insight%20Studio&body=%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B5%E0%B8%84%E0%B8%A3%E0%B8%B1%E0%B8%9A%2F%E0%B8%84%E0%B9%88%E0%B8%B0%0A%E0%B8%AA%E0%B8%99%E0%B9%83%E0%B8%88%20%E0%B8%82%E0%B8%AD%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%A5%E0%B8%B0%E0%B9%80%E0%B8%AD%E0%B8%B5%E0%B8%A2%E0%B8%94%E0%B8%A3%E0%B8%B2%E0%B8%84%E0%B8%B2%20%E0%B8%AA%E0%B8%B3%E0%B8%AB%E0%B8%A3%E0%B8%B1%E0%B8%9A%20Safe-to-Insight%20Studio%0A%0A%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%AD%E0%B8%87%E0%B8%84%E0%B9%8C%E0%B8%81%E0%B8%A3%3A%0A%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B8%93%E0%B8%B0%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%95%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%8A%E0%B9%89%3A%0A%E0%B8%88%E0%B8%B3%E0%B8%99%E0%B8%A7%E0%B8%99%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B9%82%E0%B8%94%E0%B8%A2%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%A1%E0%B8%B2%E0%B8%93%3A%0A%E0%B8%8A%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%97%E0%B8%B2%E0%B8%87%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B8%B1%E0%B8%9A%3A%0A%0A%E0%B8%A2%E0%B8%B1%E0%B8%87%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B9%81%E0%B8%99%E0%B8%9A%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%87%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A5%E0%B8%B1%E0%B8%9A"
+              >ขอรายละเอียดราคา ↗</a
+            >
           </div>
+          <p class="contact-help">
+            ปุ่มจะเปิดแอปอีเมลของคุณ ยังไม่มีการส่งข้อความจนกว่าคุณจะกดส่ง<br />หากเปิดไม่ได้
+            ติดต่อ
+            <a href="mailto:dewteerapap@seederschool.com"
+              >dewteerapap@seederschool.com</a
+            >
+          </p>
+          <p class="pilot-access">
+            มีบัญชีทดลองใช้งานแล้ว? <a href="/app/">เปิดโปรแกรม ↗</a
+            ><span
+              >ระบบทดลองปัจจุบันสำหรับบัญชี seederschool.com
+              ที่ได้รับสิทธิ์</span
+            >
+          </p>
         </div>
       </section>
     </main>
-
     <footer class="site-footer">
-      <div class="container footer-grid">
-        <div class="footer-brand">
-          <a class="brand brand-footer" href="#top"><img src="/brand/logo-mark.svg" width="42" height="42" alt=""><span class="brand-copy"><strong>Safe-to-Insight</strong><small>STUDIO</small></span></a>
-          <p>เตรียมข้อมูลให้ปลอดภัยก่อนนำไปใช้กับ AI</p>
-        </div>
-        <div class="footer-links"><a href="#how-it-works">วิธีทำงาน</a><a href="#safe-package">Safe Package</a><a href="#governance">ความปลอดภัย</a><a href="#pilot">สำหรับองค์กร</a></div>
-        <div class="footer-status"><span><i></i> Controlled Pilot</span><p>เวอร์ชันสำหรับทดลองแบบจำกัดผู้ใช้</p></div>
+      <div class="container footer-row">
+        <a class="brand" href="#top"
+          ><img src="/brand/logo-mark.svg" width="38" height="38" alt="" /><span
+            ><strong>Safe-to-Insight</strong><small>STUDIO</small></span
+          ></a
+        >
+        <p>Safe Data First. Insight Next.</p>
+        <small>© <span id="year">2026</span> Safe-to-Insight Studio</small>
       </div>
-      <div class="container footer-bottom"><p>© <span data-year></span> Safe-to-Insight Studio</p><p>เครื่องมือนี้สนับสนุนการจัดการข้อมูล ไม่ใช่คำปรึกษาหรือคำรับรองทางกฎหมาย</p></div>
     </footer>
-
-    <noscript><div class="noscript">เว็บไซต์นี้ยังอ่านได้โดยไม่ใช้ JavaScript แต่ตัวอย่างแบบโต้ตอบและเมนูบนมือถือจะไม่ทำงาน</div></noscript>
-    <script src="/script.js" defer></script>
   </body>
 </html>
