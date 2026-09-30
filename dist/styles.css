@@ -1774,7 +1774,7 @@ tbody tr:last-child td {
 /* Realistic demo and product conversion */
 .hero-product-intro {
   margin-top: 22px;
-  max-width: 470px;
+  max-width: none;
   color: #bfd4e2;
   font-size: 14px;
   line-height: 1.85;
