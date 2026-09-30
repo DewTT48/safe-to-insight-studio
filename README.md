@@ -30,7 +30,7 @@ python3 -m http.server 4173 --directory dist
 
 ## Interactive landing v2 — 30 September 2026
 
-- พัฒนาบน branch `codex/interactive-landing-v2`; ไม่เปลี่ยน `main`, `gh-pages` หรือ Apps Script
+- พัฒนาบน branch `codex/interactive-landing-v2` แล้วเผยแพร่ตามคำยืนยันของผู้ใช้เมื่อ 30 September 2026; ไม่เปลี่ยน Apps Script
 - ปรับ Hero, PDPA / Confidential Info, เดโม, ขั้นตอน, Safe Package, FAQ และ CTA
 - เดโมข้อมูลธุรกิจและพนักงาน แก้ได้ทุกคอลัมน์ พร้อมก่อน–หลังและกราฟที่คำนวณจากผลลัพธ์
 - แต่ละชุดเก็บตัวเลือกแยกกันในหน่วยความจำ กดเริ่มใหม่เพื่อคืนค่าแนะนำ หรือ reload เพื่อเริ่มทั้งสองชุดใหม่
@@ -57,3 +57,14 @@ node --test tests/demo-model.test.cjs
 ```
 
 ก่อน publish ต้องตรวจหน้าจอและความถูกต้องของข้อความกับเจ้าของผลิตภัณฑ์ รวมถึงยืนยันมาตรการของ Pilot แยกจากเดโม ไม่ใช้ข้อความหน้าเว็บเป็นการรับรองความพร้อมของระบบหลังบ้าน
+
+## Public release — 30 September 2026
+
+- URL: https://safedata.dewteerapap.com/
+- Source release: `1400beb`; deployment commit: `ceee998` (GitHub เพิ่ม commit CNAME ตามหลังระหว่างผูกโดเมนใหม่)
+- GitHub Pages: `gh-pages` / root; HTTPS certificate approved และเปิด `https_enforced=true`
+- สำรอง source เดิม: tag `backup/landing-source-before-public-v2-20260930`
+- สำรองเว็บที่เคยเผยแพร่: tag `backup/landing-public-before-v2-20260930`
+- ตรวจแล้ว: ชุดทดสอบ 11 ข้อ, เนื้อหา live ตรงกับไฟล์ local, เดโมสองชุด, เมนูมือถือ 390px, รูปภาพและลิงก์ภายใน, ปลายทาง mailto โดยไม่ส่งข้อความจริง
+- ไม่ได้แก้ Apps Script, สิทธิ์ Pilot, โฟลเดอร์ `dist/app` หรือโลโก้/ไอคอนเดิม
+- หากต้องย้อนเวอร์ชัน ให้สร้าง deployment commit ใหม่จาก tree ของ backup tag โดยมี parent เป็นปลาย branch gh-pages ปัจจุบัน ไม่ force-push ประวัติ
