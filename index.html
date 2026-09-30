@@ -29,9 +29,10 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css?v=20260930-preview3" />
-    <script src="/demo-model.js?v=20260930-preview3" defer></script>
-    <script src="/script.js?v=20260930-preview3" defer></script>
+    <script src="/entry.js?v=20260930-entry4"></script>
+    <link rel="stylesheet" href="/styles.css?v=20260930-entry4" />
+    <script src="/demo-model.js?v=20260930-entry4" defer></script>
+    <script src="/script.js?v=20260930-entry4" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">ข้ามไปยังเนื้อหาหลัก</a>
@@ -68,14 +69,28 @@
               <span class="tiny-dot"></span> ก่อนส่งไฟล์ให้ AI
             </p>
             <h1>
-              <span>AI ควรได้ข้อมูล<br class="desktop-break" />ที่จำเป็น</span
-              ><span class="amber"
-                >ไม่ใช่ทุกอย่าง<br class="desktop-break" />ในไฟล์</span
+              <span class="hero-line"
+                ><span class="thai-phrase">AI ควรได้ข้อมูล</span><wbr /><span
+                  class="thai-phrase"
+                  >ที่จำเป็น</span
+                ></span
+              >
+              <span class="hero-line amber"
+                ><span class="thai-phrase">ไม่ใช่ทุกอย่าง</span><wbr /><span
+                  class="thai-phrase"
+                  >ในไฟล์</span
+                ></span
               >
             </h1>
             <p class="hero-lead">
-              ทั้งข้อมูลส่วนบุคคลและความลับธุรกิจ<br />เลือกข้อมูลที่จำเป็น
-              ก่อนนำไปวิเคราะห์
+              <span class="hero-lead-line"
+                ><span class="thai-phrase">ทั้งข้อมูลส่วนบุคคล</span
+                ><wbr /><span class="thai-phrase">และความลับธุรกิจ</span></span
+              >
+              <span class="hero-lead-line"
+                ><span class="thai-phrase">เลือกข้อมูลที่จำเป็น</span>
+                <span class="thai-phrase">ก่อนนำไปวิเคราะห์</span></span
+              >
             </p>
             <a class="button button-primary" href="#demo"
               >ลองกับข้อมูลตัวอย่าง <span aria-hidden="true">→</span></a
@@ -560,9 +575,15 @@
         <div class="container package-grid">
           <div>
             <p class="eyebrow">SAFE PACKAGE</p>
-            <h2>ได้ทั้งไฟล์ที่เตรียมแล้ว<br />และบันทึกว่าแก้อะไรไปบ้าง</h2>
+            <h2>
+              <span class="thai-phrase">ไฟล์ไหนใช้วิเคราะห์</span><br /><span
+                class="thai-phrase"
+                >ไฟล์ไหนเก็บไว้ตรวจสอบ?</span
+              >
+            </h2>
             <p>
-              ข้อมูลที่เตรียมแล้ว พร้อมรายละเอียดว่า<br />คุณเลือกปกป้องแต่ละคอลัมน์อย่างไร
+              Safe Package แยกข้อมูลหลังปรับออกจากแผนและบันทึกการแปลงข้อมูล
+              เพื่อให้รู้ว่าแต่ละไฟล์ใช้ทำอะไร ไม่ต้องส่งทุกไฟล์ให้ AI
             </p>
             <p class="package-warning">
               <span aria-hidden="true">!</span> ต้องตรวจทานก่อนนำไปใช้จริง
@@ -571,23 +592,81 @@
           <div class="documents">
             <article class="document">
               <span class="document-type">DATA</span>
-              <div class="document-lines" aria-hidden="true"></div>
               <h3>Safe Dataset</h3>
-              <p>ข้อมูลหลังปรับ</p>
+              <p class="document-purpose">ข้อมูลสำหรับนำไปวิเคราะห์</p>
+              <div class="package-sample">
+                <table aria-label="ตัวอย่างข้อมูลหลังปรับ">
+                  <thead>
+                    <tr>
+                      <th>ลูกค้า</th>
+                      <th>กำไร (บาท)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>CLIENT-001</td>
+                      <td>32,750</td>
+                    </tr>
+                    <tr>
+                      <td>CLIENT-002</td>
+                      <td>34,200</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>ชื่อถูกแทนด้วยรหัส แต่ตัวเลขกำไรยังอยู่</p>
+              </div>
+              <p class="document-use">
+                <strong>ใช้เมื่อ:</strong> ต้องการนำข้อมูลหลังปรับไปให้ AI
+                วิเคราะห์ โดยตรวจทานก่อนทุกครั้ง
+              </p>
             </article>
             <article class="document">
               <span class="document-type">PLAN</span>
-              <div class="document-lines" aria-hidden="true"></div>
               <h3>Privacy Plan</h3>
-              <p>วิธีปกป้องแต่ละคอลัมน์</p>
+              <p class="document-purpose">แผนว่าจะจัดการแต่ละคอลัมน์อย่างไร</p>
+              <div class="package-sample">
+                <dl>
+                  <div>
+                    <dt>ชื่อลูกค้า</dt>
+                    <dd>เปลี่ยนเป็นรหัสแทน</dd>
+                  </div>
+                  <div>
+                    <dt>ต้นทุน</dt>
+                    <dd>ตัดคอลัมน์ออก</dd>
+                  </div>
+                  <div>
+                    <dt>กำไร</dt>
+                    <dd>เก็บข้อมูลเดิม</dd>
+                  </div>
+                </dl>
+              </div>
+              <p class="document-use">
+                <strong>ใช้เมื่อ:</strong> ต้องการให้ทีมตรวจหรือทบทวนวิธีปกป้อง
+                ไม่ใช่ตารางสำหรับวิเคราะห์
+              </p>
             </article>
             <article class="document">
               <span class="document-type">LOG</span>
-              <div class="document-lines" aria-hidden="true"></div>
               <h3>Privacy Manifest</h3>
-              <p>บันทึกการแปลงข้อมูล</p>
+              <p class="document-purpose">บันทึกว่ารอบนี้เปลี่ยนอะไรไปแล้ว</p>
+              <div class="package-sample">
+                <ul>
+                  <li>เปลี่ยนชื่อลูกค้าเป็นรหัส</li>
+                  <li>ตัดคอลัมน์ต้นทุนออก</li>
+                  <li>คงข้อมูลกำไรไว้</li>
+                </ul>
+                <p>เก็บรายละเอียดประกอบชุดข้อมูลที่สร้าง</p>
+              </div>
+              <p class="document-use">
+                <strong>ใช้เมื่อ:</strong>
+                ต้องการตรวจย้อนหลังหรือส่งต่องานให้ทีมรู้ว่าข้อมูลผ่านการปรับอะไรมา
+              </p>
             </article>
           </div>
+          <p class="package-caption">
+            ตัวอย่างย่อเพื่ออธิบายความต่างของไฟล์ ไม่ใช่ผลจากข้อมูลจริง ·
+            แผนและบันทึกอาจมีรายละเอียดภายใน ควรเก็บให้ผู้เกี่ยวข้องตรวจสอบ
+          </p>
         </div>
       </section>
 

@@ -291,14 +291,25 @@ tbody tr:last-child td {
 .hero-grid {
   display: grid;
   grid-template-columns: 1fr 1.04fr;
-  gap: 64px;
+  gap: 40px;
   align-items: center;
   padding-top: 66px;
   padding-bottom: 64px;
 }
 .hero h1 {
-  font-size: clamp(38px, 4.15vw, 60px);
-  line-height: 1.36;
+  font-size: clamp(32px, 3.15vw, 46px);
+  line-height: 1.5;
+  text-wrap: wrap;
+}
+.thai-phrase {
+  display: inline-block;
+  white-space: nowrap;
+}
+.hero h1 .hero-line {
+  display: block;
+}
+.hero-lead-line {
+  display: block;
 }
 .hero h1 > span {
   display: block;
@@ -962,8 +973,8 @@ tbody tr:last-child td {
 }
 .package-grid {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 56px;
+  grid-template-columns: 1fr;
+  gap: 32px;
   align-items: center;
 }
 .package-section .eyebrow {
@@ -994,25 +1005,26 @@ tbody tr:last-child td {
 .documents {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  align-items: center;
+  gap: 22px;
+  align-items: stretch;
+  max-width: none;
 }
 .document {
   background: #f8fcff;
   color: var(--navy);
-  padding: 25px 16px 20px;
+  padding: 24px;
   border-radius: 9px;
   border-top: 4px solid var(--teal);
-  transform: rotate(-3deg);
+  transform: none;
   box-shadow: 0 12px 28px #0003;
   min-height: 222px;
 }
 .document:nth-child(2) {
-  transform: translateY(-14px);
+  transform: none;
   border-color: #74c5e1;
 }
 .document:nth-child(3) {
-  transform: rotate(3deg);
+  transform: none;
   border-color: #b4a1e6;
 }
 .document-type {
@@ -1046,8 +1058,9 @@ tbody tr:last-child td {
 }
 .document h3 {
   font:
-    800 14px/1.6 "Manrope",
+    800 20px/1.6 "Manrope",
     sans-serif;
+  margin-top: 16px;
 }
 .document p {
   font-size: 12px;
@@ -1286,7 +1299,7 @@ tbody tr:last-child td {
     padding-top: 50px;
   }
   .hero h1 {
-    font-size: 36px;
+    font-size: clamp(29px, 3.7vw, 36px);
   }
   .hero-lead {
     font-size: 17px;
@@ -1406,7 +1419,7 @@ tbody tr:last-child td {
     gap: 40px;
   }
   .hero h1 {
-    font-size: clamp(32px, 8.8vw, 47px);
+    font-size: clamp(29px, 8.2vw, 44px);
     line-height: 1.42;
     text-wrap: wrap;
   }
@@ -1946,6 +1959,120 @@ tbody tr:last-child td {
 .contact-help a {
   text-decoration: underline;
   overflow-wrap: anywhere;
+}
+/* Real examples make each package file's role visible at a glance. */
+#safe-package .documents {
+  max-width: none;
+}
+#safe-package .document {
+  min-width: 0;
+  padding: 24px;
+  transform: none;
+}
+#safe-package .document h3 {
+  font-size: 20px;
+  overflow-wrap: normal;
+}
+#safe-package .document-purpose {
+  font-size: 15px !important;
+  color: var(--ink) !important;
+  min-height: 3.6em;
+}
+.package-sample {
+  margin: 18px 0;
+  background: #edf4f7;
+  padding: 14px;
+  border-radius: 7px;
+  min-height: 155px;
+}
+.package-sample table {
+  width: 100%;
+  font-size: 12px;
+}
+.package-sample th,
+.package-sample td {
+  padding: 7px 4px;
+  white-space: nowrap;
+}
+.package-sample th {
+  font-size: 11px;
+}
+.package-sample dl {
+  margin: 0;
+  font-size: 12px;
+}
+.package-sample dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--line);
+}
+.package-sample dd {
+  margin: 0;
+  color: var(--teal-dark);
+}
+.package-sample ul {
+  padding-left: 18px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 2;
+}
+#safe-package .package-sample p {
+  font-size: 12px !important;
+}
+#safe-package .document-use {
+  font-size: 14px !important;
+  line-height: 1.85;
+}
+#safe-package .package-caption {
+  font-size: 13px;
+  color: #b8d0dc;
+}
+@media (max-width: 900px) {
+  #safe-package .documents {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  #safe-package .document {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 26px;
+  }
+  #safe-package .document-type {
+    justify-self: start;
+    align-self: start;
+  }
+  #safe-package .document h3 {
+    grid-column: 1;
+  }
+  #safe-package .document-purpose {
+    grid-column: 1;
+    min-height: 0;
+  }
+  #safe-package .package-sample {
+    grid-column: 2;
+    grid-row: 1 / 5;
+    margin: 0;
+  }
+  #safe-package .document-use {
+    grid-column: 1;
+  }
+}
+@media (max-width: 520px) {
+  #safe-package .document {
+    display: block;
+    padding: 22px;
+  }
+  #safe-package .package-sample {
+    margin: 18px 0;
+  }
+  #safe-package h2 {
+    font-size: clamp(23px, 6.2vw, 32px);
+  }
+  .hero-lead {
+    font-size: 17px;
+  }
 }
 /* Deeper accents; lighter text is retained on navy for contrast. */
 .hero .amber {
