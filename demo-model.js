@@ -8,9 +8,9 @@
         "เก็บค่าเดิมไว้ ลองทบทวนว่าต้องใช้ข้อมูลนี้ตอบคำถามหรือไม่ และมีสิทธิ์ส่งต่อหรือเปล่า",
     },
     pseudonym: {
-      label: "เปลี่ยนเป็นรหัส",
+      label: "เปลี่ยนเป็นรหัสแทน",
       description:
-        "ใช้รหัสแทนชื่อ โดยอ้างอิงรหัสต้นทาง ไม่รวมคนหรือบริษัทเข้าด้วยกันเพียงเพราะชื่อเหมือนกัน ข้อมูลอื่นอาจยังบอกได้ว่าเป็นใคร",
+        "ใช้รหัสแทนค่าเดิม ไม่ใช่การเข้ารหัสด้วยกุญแจสำหรับถอดกลับ ข้อมูลอื่นอาจยังเชื่อมโยงกลับได้ จึงต้องตรวจทั้งตารางก่อนนำไปใช้",
     },
     mask: {
       label: "ปิดบังข้อมูล",
@@ -25,12 +25,9 @@
     remove: {
       label: "ตัดคอลัมน์ออก",
       description:
-        "เอาคอลัมน์นี้ออกจากผลลัพธ์ ตารางต้นฉบับทางซ้ายยังอยู่ให้เปรียบเทียบ",
+        "เอาคอลัมน์นี้ออกจากผลลัพธ์ สลับดูต้นฉบับหรือกดคืนคอลัมน์ได้ทุกเมื่อ",
     },
   };
-  const textMethods = ["keep", "mask", "remove"];
-  const identityMethods = ["keep", "pseudonym", "mask", "remove"];
-  const numberMethods = ["keep", "generalize", "mask", "remove"];
   const scenarios = {
     business: {
       label: "ข้อมูลธุรกิจ",
@@ -443,6 +440,37 @@
       ],
     },
   };
+  // Names follow source identities; other fields use a separate value map per column.
+  // Never use the customer identity to encode a product (or merge namesakes).
+  const prefixes = {
+    product: "PRODUCT",
+    category: "GROUP",
+    email: "EMAIL",
+    department: "DEPT",
+    position: "ROLE",
+    status: "STATUS",
+    quantity: "QTY",
+    unitPrice: "PRICE",
+    discount: "DISCOUNT",
+    sales: "SALES",
+    cost: "COST",
+    profit: "PROFIT",
+    salary: "PAY",
+    tenure: "TENURE",
+  };
+  for (const scenario of Object.values(scenarios)) {
+    for (const column of scenario.columns) {
+      column.identity = column.key === "client" || column.key === "name";
+      column.prefix = column.prefix || prefixes[column.key];
+      if (!column.methods.includes("pseudonym"))
+        column.methods.splice(1, 0, "pseudonym");
+    }
+  }
+  function initialPlan(scenarioKey) {
+    return Object.fromEntries(
+      scenarios[scenarioKey].columns.map((c) => [c.key, "keep"]),
+    );
+  }
   function validate(scenarioKey, plan) {
     const scenario = scenarios[scenarioKey];
     if (!scenario) throw new Error("Unknown scenario");
@@ -462,7 +490,18 @@
     const columns = scenario.columns.filter(
       (column) => plan[column.key] !== "remove",
     );
-    const identities = [...new Set(scenario.rows.map((row) => row.entity))];
+    const mappings = Object.fromEntries(
+      columns.map((column) => [
+        column.key,
+        [
+          ...new Set(
+            scenario.rows.map((row) =>
+              column.identity ? row.entity : row[column.key],
+            ),
+          ),
+        ],
+      ]),
+    );
     return {
       columns,
       rows: scenario.rows.map((row) => {
@@ -476,7 +515,11 @@
             result[column.key] =
               column.prefix +
               "-" +
-              String(identities.indexOf(row.entity) + 1).padStart(3, "0");
+              String(
+                mappings[column.key].indexOf(
+                  column.identity ? row.entity : value,
+                ) + 1,
+              ).padStart(3, "0");
           if (method === "generalize") {
             const start = Math.floor(value / column.band) * column.band;
             result[column.key] =
@@ -493,7 +536,13 @@
   }
   function insight(scenarioKey, plan) {
     const scenario = validate(scenarioKey, plan);
-    const missing = scenario.required.filter((key) => plan[key] !== "keep");
+    const missing = scenario.required.filter(
+      (key) =>
+        plan[key] !== "keep" &&
+        !(
+          ["category", "department"].includes(key) && plan[key] === "pseudonym"
+        ),
+    );
     if (missing.length)
       return {
         available: false,
@@ -523,7 +572,15 @@
     }));
     return { available: true, items };
   }
-  const api = { scenarios, methods, transform, insight, format, validate };
+  const api = {
+    scenarios,
+    methods,
+    transform,
+    insight,
+    format,
+    validate,
+    initialPlan,
+  };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.SafeDemo = api;
 })(typeof globalThis !== "undefined" ? globalThis : this);

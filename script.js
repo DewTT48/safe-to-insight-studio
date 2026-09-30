@@ -29,17 +29,19 @@ document.addEventListener("click", (event) => {
 window.matchMedia("(min-width: 901px)").addEventListener("change", closeMenu);
 $("#year").textContent = new Date().getFullYear();
 
-const { scenarios, methods, transform, insight, format } = window.SafeDemo;
+const { scenarios, methods, transform, insight, format, initialPlan } =
+  window.SafeDemo;
 let current = "business";
 let selected = "client";
 let exposedColumns = [];
 let exposureIndex = -1;
 const plans = Object.fromEntries(
-  Object.entries(scenarios).map(([key, scenario]) => [
-    key,
-    { ...scenario.defaults },
-  ]),
+  Object.entries(scenarios).map(([key, scenario]) => [key, initialPlan(key)]),
 );
+const history = { business: [], people: [] };
+function remember() {
+  history[current].push({ ...plans[current] });
+}
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 function el(tag, text, className) {
   const node = document.createElement(tag);
@@ -49,6 +51,8 @@ function el(tag, text, className) {
 }
 function setMobileView(view) {
   $(".comparison").dataset.mobileView = view;
+  $(".before-panel").hidden = view !== "before";
+  $(".after-panel").hidden = view !== "after";
   document
     .querySelectorAll("[data-view]")
     .forEach((button) =>
@@ -62,7 +66,8 @@ document
   );
 function renderTable(target, columns, rows, after) {
   const host = $(target),
-    scroll = host.scrollLeft;
+    scroll = host.scrollLeft,
+    top = host.scrollTop;
   host.replaceChildren();
   if (!columns.length) {
     host.append(
@@ -98,7 +103,7 @@ function renderTable(target, columns, rows, after) {
     button.addEventListener("click", () => {
       selected = column.key;
       render();
-      $("#protection-method").focus({ preventScroll: true });
+      $("#method-buttons [aria-pressed='true']").focus();
     });
     th.append(button);
     headRow.append(th);
@@ -120,6 +125,7 @@ function renderTable(target, columns, rows, after) {
   table.append(head, body);
   host.append(table);
   host.scrollLeft = scroll;
+  host.scrollTop = top;
 }
 function renderExposure() {
   const scenario = scenarios[current];
@@ -259,17 +265,53 @@ function render() {
   const column = scenario.columns.find((item) => item.key === selected);
   $("#selected-column").textContent = column.label;
   $("#column-context").textContent = column.context;
-  const select = $("#protection-method");
-  select.replaceChildren(
+  const choices = $("#method-buttons");
+  choices.replaceChildren(
     ...column.methods.map((key) => {
-      const option = el("option", methods[key].label);
-      option.value = key;
-      return option;
+      const button = el("button", methods[key].label);
+      button.type = "button";
+      button.dataset.method = key;
+      button.setAttribute("aria-pressed", String(plan[selected] === key));
+      button.addEventListener("click", () => {
+        if (plans[current][selected] !== key) {
+          remember();
+          plans[current][selected] = key;
+        }
+        setMobileView("after");
+        render();
+        document
+          .querySelector('[data-method="' + key + '"]')
+          .focus({ preventScroll: true });
+        if (!reducedMotion.matches && $("#field-preview").animate) {
+          $("#field-preview").animate([{ opacity: 0.4 }, { opacity: 1 }], {
+            duration: 240,
+          });
+        }
+      });
+      return button;
     }),
   );
-  select.value = plan[selected];
   $("#method-description").textContent = methods[plan[selected]].description;
   const output = transform(current, plan);
+  renderFieldPreview(column, output);
+  const removedHost = $("#removed-columns");
+  removedHost.replaceChildren();
+  scenario.columns
+    .filter((c) => plan[c.key] === "remove")
+    .forEach((c) => {
+      const button = el("button", "คืนคอลัมน์: " + c.label);
+      button.type = "button";
+      button.addEventListener("click", () => {
+        remember();
+        plans[current][c.key] = "keep";
+        selected = c.key;
+        setMobileView("after");
+        render();
+        $("#method-buttons [aria-pressed='true']").focus();
+      });
+      removedHost.append(button);
+    });
+  $("#undo-demo").disabled = !history[current].length;
   renderTable("#before-table", scenario.columns, scenario.rows, false);
   renderTable("#after-table", output.columns, output.rows, true);
   renderInsight();
@@ -287,6 +329,41 @@ function render() {
     " คอลัมน์ · ตัดออก " +
     removed +
     " คอลัมน์ · ยังต้องตรวจทานก่อนใช้จริง";
+}
+function renderFieldPreview(column, output) {
+  const host = $("#field-preview"),
+    method = plans[current][selected];
+  host.replaceChildren();
+  const heading = el("div", undefined, "preview-head");
+  heading.append(el("span", "ต้นฉบับ"), el("span", "หลังปรับ"));
+  host.append(heading);
+  scenarios[current].rows.slice(0, 3).forEach((row, i) => {
+    const pair = el("div", undefined, "preview-pair");
+    pair.append(
+      el("span", format(row[selected])),
+      el("span", "→", "preview-arrow"),
+      el(
+        "strong",
+        method === "remove"
+          ? "ตัดออกจากผลลัพธ์"
+          : format(output.rows[i][selected]),
+      ),
+    );
+    host.append(pair);
+  });
+  let feedback =
+    method === "keep"
+      ? "ยังเป็นข้อมูลเดิม ลองเลือกวิธีด้านบนเพื่อดูความเปลี่ยนแปลง"
+      : column.label + ": " + methods[method].label + "แล้ว";
+  if (method === "pseudonym") {
+    feedback = column.identity
+      ? "ใช้รหัสต้นทางแยกแต่ละคนหรือลูกค้า แม้ชื่อเหมือนกันก็ไม่รวมเป็นรายเดียว"
+      : column.band
+        ? "ตัวเลขถูกแทนด้วยรหัสแล้ว จึงใช้บวกยอดหรือหาค่าเฉลี่ยไม่ได้"
+        : "ค่าเดิมที่ซ้ำกันได้รหัสเดียวกัน จึงยังแยกกลุ่มได้โดยไม่แสดงชื่อเดิม";
+  }
+  $("#field-feedback").textContent = feedback;
+  $(".instant-preview").dataset.changed = String(method !== "keep");
 }
 function chooseScenario(key) {
   if (!scenarios[key]) return;
@@ -331,31 +408,25 @@ document
       chooseScenario(link.dataset.scenarioLink),
     ),
   );
-$("#protection-method").addEventListener("change", (event) => {
-  plans[current][selected] = event.target.value;
+$("#recommend-demo").addEventListener("click", () => {
+  remember();
+  plans[current] = { ...scenarios[current].defaults };
   setMobileView("after");
   render();
-  const name = scenarios[current].columns.find(
-    (column) => column.key === selected,
-  ).label;
   $("#change-summary").textContent =
-    name +
-    ": " +
-    methods[plans[current][selected]].label +
-    " · " +
-    $("#change-summary").textContent;
-  if (!reducedMotion.matches && $(".after-panel").animate) {
-    $(".after-panel").animate(
-      [
-        { opacity: 0.45, transform: "translateY(5px)" },
-        { opacity: 1, transform: "translateY(0)" },
-      ],
-      { duration: 280, easing: "ease-out" },
-    );
-  }
+    "ใช้วิธีแนะนำแล้ว · " + $("#change-summary").textContent;
+});
+$("#undo-demo").addEventListener("click", () => {
+  if (!history[current].length) return;
+  plans[current] = history[current].pop();
+  setMobileView("after");
+  render();
+  if ($("#undo-demo").disabled)
+    $("#recommend-demo").focus({ preventScroll: true });
 });
 $("#reset-demo").addEventListener("click", () => {
-  plans[current] = { ...scenarios[current].defaults };
+  remember();
+  plans[current] = initialPlan(current);
   exposedColumns = [];
   exposureIndex = -1;
   $("#exposure-status").textContent = "";
@@ -364,8 +435,10 @@ $("#reset-demo").addEventListener("click", () => {
   setMobileView("after");
   render();
   $("#change-summary").textContent =
-    "เริ่มใหม่แล้ว กลับสู่ตัวอย่างแนะนำของ" + scenarios[current].label;
+    "เริ่มใหม่แล้ว ทุกคอลัมน์กลับเป็นข้อมูลต้นฉบับของ" +
+    scenarios[current].label;
 });
 renderExposure();
+setMobileView("after");
 render();
 $("#interactive-demo").hidden = false;
