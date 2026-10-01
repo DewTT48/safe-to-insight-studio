@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <base target="_top">
+  <meta charset="utf-8">
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#0c2639;color:#132f43;font:17px/1.75 "IBM Plex Sans Thai","Thonburi",sans-serif}main{max-width:760px;margin:32px auto;padding:32px;background:#f7fbfd;border-radius:20px}.brand{color:#087f78;font-weight:700;letter-spacing:.03em}h1{font-size:clamp(26px,5vw,36px);line-height:1.6;margin:12px 0}p{margin:10px 0 24px;color:#415b6d}label{display:block;font-weight:600;margin:20px 0 6px}input,select,textarea,button{font:inherit;width:100%;border-radius:8px;padding:12px;border:1px solid #8298a7;background:white;color:#132f43}textarea{resize:vertical;min-height:130px}.hint{display:block;font-size:14px;color:#51697a;font-weight:400}.check{display:flex;gap:12px;align-items:flex-start;font-size:15px;font-weight:400}.check input{width:20px;height:20px;flex-shrink:0;margin-top:6px}button{background:#087f78;color:white;border:0;cursor:pointer;font-weight:700;margin-top:24px}button:disabled{opacity:.6;cursor:wait}a{color:#066f69;text-underline-offset:4px}.notice{border-left:4px solid #b77b27;background:#fff5df;padding:16px;font-size:15px;margin:24px 0}.trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}.error{color:#a02c27;font-weight:600}.success{border:2px solid #087f78;border-radius:12px;padding:24px}.reference{font-weight:700;overflow-wrap:anywhere}:focus-visible{outline:3px solid #b77b27;outline-offset:3px}[hidden]{display:none!important}@media(max-width:600px){main{margin:0;border-radius:0;padding:22px 18px}body{background:#f7fbfd}}
+    .notice{border:1px solid #d6e4ec;border-radius:8px;background:#edf4f7;color:#415b6d}.next-step{margin:12px 0 0;line-height:1.8}
+  </style>
+</head>
+<body><main>
+  <div class="brand">SAFE-TO-INSIGHT STUDIO</div>
+  <h1>คุยเรื่องการใช้งาน<br>ให้เหมาะกับทีมของคุณ</h1>
+  <p>นัดดูโปรแกรม หรือขอใบเสนอราคา ฝากข้อมูลไว้ แล้วเราจะติดต่อกลับทางอีเมล</p>
+  <form id="lead-form">
+    <input type="hidden" name="token" value="<?= token ?>">
+    <label for="type">ต้องการให้เราช่วยเรื่องไหน</label>
+    <select id="type" name="type" required>
+      <option <?= initialType === 'นัดดูโปรแกรม' ? 'selected' : '' ?>>นัดดูโปรแกรม</option>
+      <option <?= initialType === 'ขอใบเสนอราคา' ? 'selected' : '' ?>>ขอใบเสนอราคา</option>
+      <option>นัดดูโปรแกรมและขอใบเสนอราคา</option>
+    </select>
+    <label for="name">ชื่อผู้ติดต่อ <span class="hint">จำเป็น — ชื่อที่สะดวกให้เราเรียก</span></label>
+    <input id="name" name="name" autocomplete="name" maxlength="120" required>
+    <label for="email">อีเมลสำหรับติดต่อกลับ <span class="hint">จำเป็น — โปรดตรวจอีเมลให้ถูกต้องก่อนส่ง</span></label>
+    <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required>
+    <label for="organization">บริษัทหรือองค์กร <span class="hint">ไม่จำเป็น</span></label>
+    <input id="organization" name="organization" autocomplete="organization" maxlength="160">
+    <label for="teamSize">จำนวนผู้ใช้งานโดยประมาณ <span class="hint">ไม่จำเป็น — เช่น 3 คน หรือ 1 ทีม</span></label>
+    <input id="teamSize" name="teamSize" maxlength="60">
+    <label for="message">อยากนำโปรแกรมไปช่วยงานอะไร <span class="hint">ไม่จำเป็น — บอกลักษณะงาน หรือช่วงเวลาที่สะดวกให้ติดต่อกลับ</span></label>
+    <textarea id="message" name="message" maxlength="1500"></textarea>
+    <div class="trap" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+    <div class="notice">เล่าลักษณะงานที่ต้องการนำไปใช้ได้เลย เช่น วิเคราะห์ยอดขายหรือวางแผนกำลังคน โดยไม่ต้องระบุข้อมูลส่วนตัวของผู้อื่นหรือรายละเอียดที่เป็นความลับขององค์กร</div>
+    <label class="check"><input type="checkbox" id="acknowledged" required><span>รับทราบว่าข้อมูลนี้ใช้เพื่อติดต่อกลับตามคำขอ โดยผู้รับคือ dewteerapap@seederschool.com หากต้องการแก้ไขหรือลบข้อมูล สามารถติดต่ออีเมลนี้ได้</span></label>
+    <p id="form-error" class="error" role="alert" hidden></p>
+    <button id="submit" type="submit">ส่งคำขอให้ติดต่อกลับ →</button>
+    <p class="hint next-step">เราจะติดต่อกลับเพื่อคุยรายละเอียด ก่อนยืนยันวันนัดหรือจัดทำใบเสนอราคา</p>
+    <p class="hint" id="progress" role="status" aria-live="polite"></p>
+  </form>
+  <section id="success" class="success" tabindex="-1" hidden>
+    <h2>รับคำขอของคุณแล้วครับ</h2>
+    <p>บันทึกข้อมูลเรียบร้อยแล้ว เราจะติดต่อกลับทางอีเมลที่คุณแจ้งไว้เพื่อคุยรายละเอียด</p>
+    <p class="reference" id="reference"></p>
+    <p>วันนัดและราคาจะยืนยันหลังจากพูดคุยกันอีกครั้ง</p>
+  </section>
+  <p class="hint">หากส่งไม่ได้ ติดต่อ <a href="mailto:dewteerapap@seederschool.com">dewteerapap@seederschool.com</a></p>
+  <a href="https://safedata.dewteerapap.com/">← กลับไปดูโปรแกรม</a>
+</main>
+<script>
+  const form=document.getElementById('lead-form'),button=document.getElementById('submit'),errorBox=document.getElementById('form-error'),progress=document.getElementById('progress');
+  let sending=false;
+  form.addEventListener('submit',function(event){
+    event.preventDefault(); if(sending||!form.reportValidity())return;
+    sending=true;button.disabled=true;errorBox.hidden=true;progress.textContent='กำลังบันทึกคำขอ กรุณารอสักครู่…';
+    const payload=Object.fromEntries(new FormData(form));payload.acknowledged=document.getElementById('acknowledged').checked;
+    google.script.run.withSuccessHandler(function(result){
+      if(!result||result.ok!==true||!result.requestId){failed({message:'ยังยืนยันการบันทึกไม่ได้ กรุณากดส่งอีกครั้ง'});return;}
+      form.hidden=true;progress.textContent='';document.getElementById('reference').textContent='เลขคำขอ: '+result.requestId;
+      const success=document.getElementById('success');success.hidden=false;success.focus();
+    }).withFailureHandler(failed).submitLead(payload);
+  });
+  function failed(error){sending=false;button.disabled=false;progress.textContent='';errorBox.textContent=error&&error.message?error.message:'ยังส่งคำขอไม่ได้ กรุณาลองอีกครั้งหรือติดต่อทางอีเมล';errorBox.hidden=false;}
+</script>
+</body></html>
